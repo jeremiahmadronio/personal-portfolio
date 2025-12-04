@@ -8,45 +8,36 @@ import Image from "next/image"
 
 const projects = [
   {
-    title: "E-Commerce Platform",
+    title: "Budget Planner & Price Monitoring",
     description:
-      "A full-featured online store with product management, cart functionality, and secure Stripe payment integration. Built with performance and scalability in mind.",
-    technologies: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
-    image: "/modern-ecommerce-website-dashboard-dark-theme-with.jpg",
+      "A web app for checking real-time market prices and planning your budget. It automatically scrapes price data from the Department of Agriculture and updates whenever DA releases new info. The microservice for web scraping is built in Python (FastAPI), with a React + TypeScript + Tailwind frontend and Spring Boot integration. Tech stack: PostgreSQL, FastAPI, Spring Boot, React, TypeScript, Tailwind CSS.",
+    technologies: ["React", "Tailwind CSS", "Spring Boot", "Python", "PostgreSQL"],
+    image: "/images/price.png",
     liveUrl: "#",
     githubUrl: "#",
     color: "from-blue-500/20 to-cyan-500/20",
   },
   {
-    title: "Task Management App",
+    title: "E-Commerce Platform",
     description:
-      "Collaborative project management tool with real-time updates, drag-and-drop interface, and team workspaces for seamless productivity.",
-    technologies: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
-    image: "/kanban-board-task-management-app-dark-theme-modern.jpg",
+      "A simple online shop for skin care and beauty products.",
+    technologies: ["React", "Tailwind CSS", "Spring Boot", "Python", "PostgreSQL"],
+    image: "/images/eco.png",
     liveUrl: "#",
     githubUrl: "#",
     color: "from-purple-500/20 to-pink-500/20",
   },
   {
-    title: "Analytics Dashboard",
+    title: "Barber Shop Booking System",
     description:
-      "Data visualization platform with interactive charts, real-time metrics tracking, and customizable reports for data-driven decisions.",
-    technologies: ["React", "D3.js", "Node.js", "MongoDB"],
-    image: "/analytics-dashboard-with-charts-and-graphs-dark-th.jpg",
+      "A web-based booking system for barber shops.",
+    technologies: ["HTML", "CSS", "JavaScript", "Python", "MySQL"],
+    image: "/images/barber.png",
     liveUrl: "#",
     githubUrl: "#",
     color: "from-green-500/20 to-emerald-500/20",
   },
-  {
-    title: "Social Media API",
-    description:
-      "RESTful API backend for social networking with JWT authentication, real-time notifications, and scalable architecture.",
-    technologies: ["Java", "Spring Boot", "PostgreSQL", "Docker"],
-    image: "/api-documentation-interface-swagger-dark-theme.jpg",
-    liveUrl: "#",
-    githubUrl: "#",
-    color: "from-orange-500/20 to-amber-500/20",
-  },
+ 
 ]
 
 export function ProjectsSection() {
@@ -85,19 +76,20 @@ export function ProjectsSection() {
               onMouseLeave={() => setHoveredIndex(null)}
               className="group relative rounded-2xl bg-card border border-border overflow-hidden hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5"
             >
-              {/* Project Image */}
-              <div className="relative h-56 overflow-hidden">
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-60 z-10`} />
+              {/* Project Image - no extra space above or below */}
+              <div className="relative w-full bg-background overflow-hidden rounded-t-2xl" style={{ minHeight: '180px', height: 'auto', display: 'block' }}>
                 <Image
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105 rounded-t-2xl"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority={index === 0}
                 />
 
                 {/* Hover overlay with links */}
                 <motion.div
-                  className="absolute inset-0 bg-background/90 backdrop-blur-sm flex items-center justify-center gap-6 z-20"
+                  className="absolute inset-0 bg-background/90 backdrop-blur-sm flex items-center justify-center gap-6 z-20 rounded-t-2xl"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
                   transition={{ duration: 0.3 }}

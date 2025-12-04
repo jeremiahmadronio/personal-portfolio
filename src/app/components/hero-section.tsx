@@ -4,16 +4,18 @@ import { motion } from "framer-motion"
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { BackgroundShapes } from "./background-shapes"
-
+import { ProfessionalEffects } from "./background-shapes"
 
 export function HeroSection() {
   return (
-    <section className="min-h-screen flex items-center justify-center pt-16 px-0 overflow-hidden relative">
+    <section className="min-h-screen flex items-center justify-center pt-16 px-0 overflow-hidden relative bg-background">
       <div className="absolute inset-0 overflow-hidden">
-        {/* Large animated gradient orbs */}
+        {/* UPDATED: Stronger Background Colors 
+           Tinaasan ko ang opacity (mula /5 naging /20) para lumitaw ang kulay 
+           at hindi magmukhang maputing usok lang.
+        */}
         <motion.div
-          className="absolute top-[-25%] left-[5%] w-[1200px] h-[1000px] bg-primary/10 rounded-full blur-[220px]"
+          className="absolute top-[-25%] left-[5%] w-[1200px] h-[1000px] bg-primary/20 rounded-full blur-[220px]"
           animate={{
             scale: [1, 1.3, 1],
             x: [0, 80, 0],
@@ -22,7 +24,7 @@ export function HeroSection() {
           transition={{ duration: 18, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-[-15%] right-[0%] w-[950px] h-[900px] bg-accent/8 rounded-full blur-[200px]"
+          className="absolute bottom-[-15%] right-[0%] w-[950px] h-[900px] bg-accent/15 rounded-full blur-[200px]"
           animate={{
             scale: [1, 1.2, 1],
             x: [0, -60, 0],
@@ -30,33 +32,9 @@ export function HeroSection() {
           }}
           transition={{ duration: 15, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3 }}
         />
-        <motion.div
-          className="absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[1300px] h-[1300px] rounded-full"
-          style={{
-            background: "radial-gradient(circle, rgba(20, 184, 166, 0.05) 0%, transparent 50%)",
-          }}
-          animate={{ scale: [1, 1.15, 1], rotate: [0, 10, 0] }}
-          transition={{ duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute top-[20%] right-[20%] w-[520px] h-[520px] bg-primary/6 rounded-full blur-[150px]"
-          animate={{
-            scale: [1, 1.25, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 5 }}
-        />
-        <motion.div
-          className="absolute bottom-[30%] left-[10%] w-[480px] h-[480px] bg-accent/5 rounded-full blur-[130px]"
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 30, 0],
-          }}
-          transition={{ duration: 14, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 7 }}
-        />
-
+        
         {/* Grid pattern overlay */}
-        <div className="absolute inset-0 opacity-[0.03]">
+        <div className="absolute inset-0 opacity-[0.05]"> {/* Tinaasan konti visibility ng grid */}
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
@@ -73,56 +51,28 @@ export function HeroSection() {
           </svg>
         </div>
 
-        {/* Multiple animated scan lines */}
-        <motion.div
-          className="absolute left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"
-          style={{ top: "15%" }}
-          animate={{
-            opacity: [0, 0.4, 0],
-            y: [0, 150, 300],
-          }}
-          transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/25 to-transparent"
-          style={{ top: "50%" }}
-          animate={{
-            opacity: [0, 0.35, 0],
-            y: [0, 120, 240],
-          }}
-          transition={{ duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "linear", delay: 4 }}
-        />
-        <motion.div
-          className="absolute left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"
-          style={{ top: "80%" }}
-          animate={{
-            opacity: [0, 0.3, 0],
-            y: [-100, 50, 200],
-          }}
-          transition={{ duration: 14, repeat: Number.POSITIVE_INFINITY, ease: "linear", delay: 8 }}
-        />
-
-        {/* Floating particles across entire background */}
-        {Array.from({ length: 20 }).map((_, i) => (
+        {/* Floating particles */}
+        {Array.from({ length: 40 }).map((_, i) => (
           <motion.div
             key={`bg-particle-${i}`}
             className="absolute rounded-full bg-primary/20"
             style={{
-              top: `${5 + ((i * 4.5) % 90)}%`,
-              left: `${3 + ((i * 7) % 94)}%`,
-              width: 3 + (i % 3) * 2,
-              height: 3 + (i % 3) * 2,
+              top: `${5 + ((i * 2.3) % 90)}%`,
+              left: `${3 + ((i * 5) % 94)}%`,
+              width: 2 + (i % 4),
+              height: 2 + (i % 4),
             }}
             animate={{
-              y: [0, -30 - (i % 20), 0],
-              x: [0, i % 2 === 0 ? 15 : -15, 0],
+              y: [0, -40 - (i % 25), 0],
+              x: [0, i % 2 === 0 ? 20 : -20, 0],
               opacity: [0.1, 0.4, 0.1],
+              scale: [1, 1.3, 1],
             }}
             transition={{
-              duration: 5 + (i % 5),
+              duration: 6 + (i % 6),
               repeat: Number.POSITIVE_INFINITY,
               ease: "easeInOut",
-              delay: i * 0.3,
+              delay: i * 0.2,
             }}
           />
         ))}
@@ -132,16 +82,16 @@ export function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           {/* Left side - Content */}
           <div className="order-2 lg:order-1 text-center lg:text-left relative">
-
-            {/* Animated background behind the name */}
+            
+            {/* Name Background Glow */}
             <motion.div
               className="absolute left-1/2 -translate-x-1/2 top-8 w-[420px] h-[120px] md:w-[520px] md:h-[160px] pointer-events-none z-0"
-              style={{ filter: "blur(32px)" }}
+              style={{ filter: "blur(40px)" }}
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: [0.3, 0.5, 0.3], scale: [1, 1.08, 1], rotate: [0, 8, 0] }}
+              animate={{ opacity: [0.2, 0.4, 0.2], scale: [1, 1.08, 1], rotate: [0, 8, 0] }}
               transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
             >
-              <div className="w-full h-full rounded-full bg-gradient-to-r from-primary/30 via-accent/20 to-primary/30" />
+              <div className="w-full h-full rounded-full bg-gradient-to-r from-primary/20 via-accent/10 to-primary/20" />
             </motion.div>
 
             <motion.div
@@ -249,82 +199,51 @@ export function HeroSection() {
             className="order-1 lg:order-2 relative flex justify-center"
           >
             {/* Background shapes component */}
-            <BackgroundShapes />
+            <ProfessionalEffects />
 
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 sm:w-[400px] sm:h-[400px]">
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-primary/25 via-primary/15 to-accent/20 rounded-full blur-[60px]"
-                animate={{ scale: [1, 1.1, 1], rotate: [0, 5, 0] }}
-                transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-              />
-            </div>
+            {/* Photo container with enhanced frame effects */}
+            <div className="relative z-10 w-64 h-80 sm:w-72 sm:h-96 lg:w-80 lg:h-[420px]">
+              
+              {/* Main photo frame */}
+              <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl shadow-primary/10">
+                
+                {/* TINANGGAL KO NA YUNG GRADIENT OVERLAY DITO.
+                   Dati may overlay dito na nagfe-fade to "background" color.
+                   Yun ang nagpupuputi sa picture mo. Ngayon, clean image na lang.
+                */}
 
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 sm:w-80 sm:h-80 lg:w-[420px] lg:h-[420px]">
-              <motion.div
-                className="absolute inset-0 rounded-full border-2 border-dashed border-primary/30"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 25, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-              />
-              <motion.div
-                className="absolute inset-4 rounded-full border border-accent/25"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-              />
-              <motion.div
-                className="absolute inset-8 rounded-full border border-dotted border-primary/20"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 35, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-              />
-              <motion.div
-                className="absolute inset-12 rounded-full border border-dashed border-accent/15"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 40, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-              />
-            </div>
+                {/* Animated border glow - Subtle blue border only */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl z-10 pointer-events-none"
+                  style={{
+                    border: '2px solid rgba(6, 182, 212, 0.3)', // Solid Tech Blue Color
+                  }}
+                  animate={{
+                    boxShadow: [
+                      '0 0 0px rgba(6, 182, 212, 0)', // No glow
+                      '0 0 10px rgba(6, 182, 212, 0.2)', // Very subtle glow
+                      '0 0 0px rgba(6, 182, 212, 0)',
+                    ],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "easeInOut",
+                  }}
+                />
 
-            <motion.div
-              className="absolute top-1/2 left-1/2 w-80 h-80 sm:w-96 sm:h-96 lg:w-[420px] lg:h-[420px]"
-              style={{ marginLeft: "-210px", marginTop: "-210px" }}
-              animate={{ rotate: 360 }}
-              transition={{ duration: 18, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-            >
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary/70 shadow-lg shadow-primary/30" />
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-accent/60" />
-              <div className="absolute top-1/2 left-0 -translate-y-1/2 w-2 h-2 rounded-full bg-primary/50" />
-              <div className="absolute top-1/2 right-0 -translate-y-1/2 w-2 h-2 rounded-full bg-accent/50" />
-            </motion.div>
+                {/* TINANGGAL KO NA RIN YUNG "MIST/SMOKE" DIVS DITO.
+                   Yun yung ulap sa baba na nagmumukhang puti sa light mode.
+                */}
 
-            <motion.div
-              className="absolute top-1/2 left-1/2 w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80"
-              style={{ marginLeft: "-160px", marginTop: "-160px" }}
-              animate={{ rotate: -360 }}
-              transition={{ duration: 14, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-            >
-              <div className="absolute top-[15%] left-[15%] w-2 h-2 rounded-full bg-accent/50" />
-              <div className="absolute bottom-[15%] right-[15%] w-2.5 h-2.5 rounded-full bg-primary/60" />
-            </motion.div>
-
-            <motion.div
-              className="absolute top-1/2 left-1/2 w-[500px] h-[500px]"
-              style={{ marginLeft: "-250px", marginTop: "-250px" }}
-              animate={{ rotate: 360 }}
-              transition={{ duration: 30, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-            >
-              <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-primary/40" />
-              <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-accent/40" />
-            </motion.div>
-
-            {/* Photo container - using your formal photo */}
-            <div className="relative z-10 w-64 h-80 sm:w-72 sm:h-96 lg:w-80 lg:h-[420px] rounded-2xl overflow-hidden bg-gradient-to-b from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 shadow-2xl shadow-primary/10">
-              <Image
-                src="/images/jeremiah-profile-preview.png"
-                alt="Jeremiah Madronio"
-                fill
-                className="object-cover object-top"
-                priority
-              />
-              {/* Subtle gradient overlay at bottom */}
-              <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background/20 to-transparent" />
+                <Image
+                  src="/images/a.jfif"
+                  alt="Jeremiah Madronio"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+              </div>
             </div>
           </motion.div>
         </div>

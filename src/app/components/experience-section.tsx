@@ -7,28 +7,28 @@ import { Briefcase, Calendar } from "lucide-react"
 
 const experiences = [
   {
-    period: "2024 — Present",
+    period: "2025 — Present",
     role: "Full Stack Developer",
     company: "Freelance",
     description:
-      "Building custom web solutions for clients worldwide. Specializing in landing pages, e-commerce platforms, and web applications.",
-    technologies: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Node.js"],
+      "Building custom web solutions for clients worldwide. Specializing in e-commerce platforms, and web applications.",
+    technologies: ["TypeScript", "Golang", "Tailwind CSS", "Microservices Architecture","PostgreSQL", "Docker" ,"Kafka" ],
   },
   {
-    period: "2023 — 2024",
-    role: "Frontend Developer",
-    company: "Tech Startup",
+    period: "2024",
+    role: "Full Stack Developer",
+    company: "STI College Novaliches",
     description:
-      "Developed responsive user interfaces and implemented complex features for a SaaS platform. Collaborated with designers and backend developers.",
-    technologies: ["React", "TypeScript", "Redux", "REST APIs"],
+      "Primarily focused on developing enterprise backend foundations, utilizing frameworks to build robust APIs. Successfully integrated these services with clean, responsive user interfaces for end-user interaction.",
+    technologies: ["Spring Boot", "React", "MySQL", "REST APIs","Layered Architecture","Git","Tailwind CSS" ],
   },
   {
-    period: "2022 — 2023",
-    role: "Junior Developer",
-    company: "Software Agency",
+    period: "2023",
+    role: "Programming Foundations",
+    company: "STI College Novaliches",
     description:
-      "Started my professional journey building web applications with Java Spring Boot and React. Gained experience in agile methodologies.",
-    technologies: ["Java", "Spring Boot", "React", "PostgreSQL"],
+      "Gained solid foundational skills in key programming languages. Mastered core concepts in Java and Python while building basic web components using HTML, CSS, and JavaScript.",
+    technologies: ["Java",  "Python", "HTML","JS", "CSS"],
   },
 ]
 
@@ -37,10 +37,19 @@ export function ExperienceSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="experience" className="py-24 px-6 relative">
-      <div className="absolute inset-0 grid-pattern opacity-20" />
+    <section id="experience" className="py-24 px-6 relative overflow-hidden bg-white dark:bg-[#01161d]">
+      {/* --- BACKGROUND LIGHTING (Match About Section) --- */}
+      {/* 1. Base Dark Background */}
+      <div className="absolute inset-0 bg-[#01161d] -z-50 hidden dark:block" />
+      {/* 2. THE SPOTLIGHT: Malaking light source sa gitna */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-500/20 via-[#01161d]/40 to-transparent -z-40 pointer-events-none" />
+      {/* 3. Horizontal Light Line (Tech Accent) */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent opacity-50" />
+      {/* 4. Subtle Orbs for Ambient Light */}
+      <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 -right-20 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative" ref={ref}>
+      <div className="max-w-6xl mx-auto relative z-10" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

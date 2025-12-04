@@ -1,569 +1,468 @@
-"use client"
+import React from 'react'
+import { motion } from 'framer-motion'
 
-import { motion } from "framer-motion"
+export function ProfessionalEffects() {
+  // Gamit tayo ng mas DARK na Cyan/Teal values (RGB: 8, 145, 178 -> Cyan-600) 
+  // para visible siya sa White Background.
+  const darkCyan = '8, 145, 178' 
+  const darkTeal = '13, 148, 136'
 
-export function BackgroundShapes() {
   return (
     <>
-      {/* Top Left Orb */}
-      <motion.div
-        className="absolute -left-40 -top-40 w-[600px] h-[600px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, rgba(20, 184, 166, 0.18) 0%, transparent 70%)",
-        }}
-        animate={{
-          scale: [1, 1.25, 1],
-          opacity: [0.3, 0.6, 0.3],
-          x: [0, 40, 0],
-          y: [0, 30, 0],
-        }}
-        transition={{ duration: 14, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-      />
-
-      {/* Top Right Orb */}
-      <motion.div
-        className="absolute -right-32 -top-32 w-[500px] h-[500px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, rgba(20, 184, 166, 0.2) 0%, transparent 70%)",
-        }}
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.4, 0.7, 0.4],
-          x: [0, 30, 0],
-          y: [0, -20, 0],
-        }}
-        transition={{ duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-      />
-
-      {/* Bottom Left Orb */}
-      <motion.div
-        className="absolute -left-32 bottom-0 w-[500px] h-[500px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, rgba(6, 182, 212, 0.18) 0%, transparent 70%)",
-        }}
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.6, 0.3],
-          x: [0, -30, 0],
-          y: [0, 20, 0],
-        }}
-        transition={{ duration: 13, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3 }}
-      />
-
-      {/* Bottom Right Orb */}
-      <motion.div
-        className="absolute -right-40 bottom-0 w-[600px] h-[600px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%)",
-        }}
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.2, 0.5, 0.2],
-          x: [0, 30, 0],
-          y: [0, -30, 0],
-        }}
-        transition={{ duration: 15, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 }}
-      />
-
-      {/* Center Large Orb */}
-      <motion.div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, rgba(20, 184, 166, 0.08) 0%, transparent 80%)",
-        }}
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.15, 0.3, 0.15],
-        }}
-        transition={{ duration: 18, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 5 }}
-      />
-      {/* Extra animated lines for more coverage */}
-      <motion.div
-        className="absolute left-0 w-full h-px"
-        style={{
-          background: "linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.25), transparent)",
-          top: "30%",
-        }}
-        animate={{
-          opacity: [0, 0.3, 0],
-          x: [-80, 80, -80],
-        }}
-        transition={{ duration: 7, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute left-0 w-full h-px"
-        style={{
-          background: "linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.18), transparent)",
-          top: "60%",
-        }}
-        animate={{
-          opacity: [0, 0.25, 0],
-          x: [60, -60, 60],
-        }}
-        transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 }}
-      />
-      <motion.div
-        className="absolute left-0 w-full h-px"
-        style={{
-          background: "linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.18), transparent)",
-          top: "90%",
-        }}
-        animate={{
-          opacity: [0, 0.2, 0],
-          x: [-40, 40, -40],
-        }}
-        transition={{ duration: 9, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 4 }}
-      />
-
-      <motion.div
-        className="absolute -left-40 top-1/4 w-[400px] h-[400px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%)",
-        }}
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.6, 0.3],
-          x: [0, -20, 0],
-        }}
-        transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 }}
-      />
-
-      <motion.div
-        className="absolute right-1/4 bottom-0 w-[350px] h-[350px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, rgba(20, 184, 166, 0.12) 0%, transparent 70%)",
-        }}
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.25, 0.45, 0.25],
-        }}
-        transition={{ duration: 9, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 4 }}
-      />
-
-      <svg className="absolute inset-0 w-full h-full opacity-[0.04]" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="hexagons" width="50" height="43.4" patternUnits="userSpaceOnUse" patternTransform="scale(2)">
-            <polygon
-              points="25,0 50,14.4 50,43.4 25,57.7 0,43.4 0,14.4"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="0.5"
-              className="text-primary"
-            />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#hexagons)" />
-      </svg>
-
-      <motion.div
-        className="absolute right-[-20px] top-10 w-40 h-40"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 25, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-      >
-        <div className="absolute inset-0 rounded-full border-2 border-primary/25" />
-        <div className="absolute inset-3 rounded-full border border-dashed border-accent/20" />
-        <div className="absolute inset-6 rounded-full border border-dotted border-primary/15" />
-      </motion.div>
-
-      <motion.div
-        className="absolute -left-16 bottom-32 w-32 h-32"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-      >
-        <div className="absolute inset-0 rounded-full border-2 border-accent/25" />
-        <div className="absolute inset-4 rounded-full border border-primary/20" />
-      </motion.div>
-
-      <motion.div
-        className="absolute left-1/3 -top-10 w-28 h-28"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 35, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-      >
-        <div className="absolute inset-0 rounded-full border border-dashed border-primary/20" />
-      </motion.div>
-
-      <motion.div
-        className="absolute right-1/4 bottom-10 w-24 h-24"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 28, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-      >
-        <div className="absolute inset-0 rounded-full border border-accent/20" />
-        <div className="absolute inset-2 rounded-full border border-dotted border-primary/15" />
-      </motion.div>
-
-      {[
-        // Extra squares for more coverage
-        { top: "60%", right: "18%", size: 14, delay: 2.2, rotation: 30 },
-        { top: "35%", left: "18%", size: 10, delay: 2.7, rotation: 15 },
-        { top: "70%", right: "15%", size: 12, delay: 3.2, rotation: 60 },
-        { top: "85%", left: "8%", size: 10, delay: 3.7, rotation: 90 },
-        { top: "10%", right: "8%", size: 16, delay: 0, rotation: 45 },
-        { top: "25%", right: "3%", size: 12, delay: 0.5, rotation: 0 },
-        { top: "45%", right: "12%", size: 14, delay: 1, rotation: 45 },
-        { top: "15%", left: "5%", size: 10, delay: 1.5, rotation: 0 },
-        { top: "55%", left: "3%", size: 16, delay: 2, rotation: 45 },
-        { top: "75%", left: "10%", size: 12, delay: 2.5, rotation: 0 },
-        { top: "80%", right: "6%", size: 10, delay: 3, rotation: 45 },
-        { top: "5%", left: "15%", size: 8, delay: 3.5, rotation: 0 },
-      ].map((item, i) => (
+      {/* Multi-layered Rotating Rings - SHARPER & DARKER FOR VISIBILITY */}
+      {[0, 1, 2, 3, 4].map((i) => (
         <motion.div
-          key={`square-${i}`}
-          className="absolute border-2 border-primary/25"
+          key={`ring-${i}`}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
           style={{
-            top: item.top,
-            right: item.right,
-            left: item.left,
-            width: item.size,
-            height: item.size,
-            rotate: `${item.rotation}deg`,
+            width: 300 + i * 70,
+            height: 300 + i * 70,
+            // Increased opacity and used Darker Cyan for clear lines on white
+            border: `1px ${i % 2 === 0 ? 'solid' : 'dashed'} rgba(${darkCyan}, ${0.5 - i * 0.05})`, 
           }}
           animate={{
-            y: [0, -25, 0],
-            rotate: [item.rotation, item.rotation + 180, item.rotation],
-            opacity: [0.2, 0.5, 0.2],
-            scale: [1, 1.1, 1],
+            rotate: i % 2 === 0 ? 360 : -360,
+            scale: [1, 1.02, 1],
           }}
           transition={{
-            duration: 6 + i * 0.3,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: item.delay,
-          }}
-        />
-      ))}
-
-      {[
-        // Extra dots for more coverage
-        { top: "30%", left: "25%", size: 4, delay: 1.1 },
-        { top: "60%", right: "10%", size: 5, delay: 2.3 },
-        { top: "80%", left: "20%", size: 3, delay: 3.5 },
-        { top: "15%", right: "30%", size: 4, delay: 2.8 },
-        { top: "8%", right: "5%", size: 4, delay: 0 },
-        { top: "12%", right: "15%", size: 3, delay: 0.3 },
-        { top: "20%", right: "2%", size: 5, delay: 0.6 },
-        { top: "28%", right: "18%", size: 3, delay: 0.9 },
-        { top: "35%", right: "8%", size: 4, delay: 1.2 },
-        { top: "42%", right: "22%", size: 3, delay: 1.5 },
-        { top: "50%", left: "5%", size: 5, delay: 1.8 },
-        { top: "58%", left: "12%", size: 3, delay: 2.1 },
-        { top: "65%", left: "3%", size: 4, delay: 2.4 },
-        { top: "72%", left: "18%", size: 3, delay: 2.7 },
-        { top: "78%", right: "15%", size: 4, delay: 3 },
-        { top: "85%", right: "5%", size: 3, delay: 3.3 },
-        { top: "92%", left: "8%", size: 5, delay: 3.6 },
-        { top: "5%", left: "25%", size: 3, delay: 3.9 },
-        { top: "18%", left: "8%", size: 4, delay: 4.2 },
-        { top: "88%", right: "25%", size: 3, delay: 4.5 },
-      ].map((dot, i) => (
-        <motion.div
-          key={`dot-${i}`}
-          className="absolute rounded-full bg-primary/40"
-          style={{
-            top: dot.top,
-            right: dot.right,
-            left: dot.left,
-            width: dot.size * 3,
-            height: dot.size * 3,
-          }}
-          animate={{
-            y: [0, -20, 0],
-            x: [0, i % 2 === 0 ? 10 : -10, 0],
-            opacity: [0.2, 0.6, 0.2],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 4 + i * 0.2,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: dot.delay,
-          }}
-        />
-      ))}
-
-      {[
-        // Extra pluses for more coverage
-        { top: "10%", left: "30%", size: 18, delay: 2.2 },
-        { top: "50%", right: "10%", size: 20, delay: 3.1 },
-        { top: "90%", left: "10%", size: 16, delay: 4.3 },
-        { top: "15%", right: "20%", size: 24, delay: 0 },
-        { top: "35%", left: "8%", size: 20, delay: 1 },
-        { top: "60%", right: "25%", size: 18, delay: 2 },
-        { top: "80%", left: "15%", size: 22, delay: 3 },
-        { top: "25%", left: "20%", size: 16, delay: 4 },
-        { top: "70%", right: "8%", size: 20, delay: 5 },
-      ].map((plus, i) => (
-        <motion.div
-          key={`plus-${i}`}
-          className="absolute text-primary/20 font-light"
-          style={{
-            top: plus.top,
-            right: plus.right,
-            left: plus.left,
-            fontSize: plus.size,
-          }}
-          animate={{
-            opacity: [0.15, 0.4, 0.15],
-            rotate: [0, 90, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 5 + i * 0.5,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: plus.delay,
+            rotate: {
+              duration: 25 + i * 5,
+              repeat: Infinity,
+              ease: 'linear',
+            },
+            scale: {
+              duration: 4,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            },
           }}
         >
-          +
+           {/* Detailed Ticks - Solid Color */}
+           {i % 2 !== 0 && (
+             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-2 bg-cyan-600" />
+           )}
+           {i % 2 !== 0 && (
+             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[2px] h-2 bg-cyan-600" />
+           )}
         </motion.div>
       ))}
 
-      <svg className="absolute inset-0 w-full h-full pointer-events-none">
-        {/* Constellation lines */}
-        <motion.line
-          x1="10%"
-          y1="20%"
-          x2="25%"
-          y2="35%"
-          stroke="currentColor"
-          strokeWidth="1"
-          className="text-primary/10"
-          animate={{ opacity: [0.05, 0.15, 0.05] }}
-          transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-        />
-        <motion.line
-          x1="75%"
-          y1="15%"
-          x2="90%"
-          y2="30%"
-          stroke="currentColor"
-          strokeWidth="1"
-          className="text-accent/10"
-          animate={{ opacity: [0.08, 0.2, 0.08] }}
-          transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
-        />
-        <motion.line
-          x1="5%"
-          y1="60%"
-          x2="20%"
-          y2="75%"
-          stroke="currentColor"
-          strokeWidth="1"
-          className="text-primary/10"
-          animate={{ opacity: [0.05, 0.15, 0.05] }}
-          transition={{ duration: 4.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 }}
-        />
-        <motion.line
-          x1="80%"
-          y1="70%"
-          x2="95%"
-          y2="85%"
-          stroke="currentColor"
-          strokeWidth="1"
-          className="text-accent/10"
-          animate={{ opacity: [0.06, 0.18, 0.06] }}
-          transition={{ duration: 5.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3 }}
-        />
-      </svg>
-
+      {/* Enhanced Grid Background - VISIBLE LINES */}
       <motion.div
-        className="absolute left-0 w-full h-px"
-        style={{
-          background: "linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.4), transparent)",
-          top: "15%",
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px]"
+        animate={{ opacity: [0.3, 0.5, 0.3], rotate: [0, 5, 0] }} // Higher opacity for visibility
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: 'easeInOut',
         }}
-        animate={{
-          opacity: [0, 0.5, 0],
-          x: [-100, 100, -100],
-        }}
-        transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute left-0 w-full h-px"
-        style={{
-          background: "linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.3), transparent)",
-          top: "45%",
-        }}
-        animate={{
-          opacity: [0, 0.4, 0],
-          x: [100, -100, 100],
-        }}
-        transition={{ duration: 7, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 }}
-      />
-      <motion.div
-        className="absolute left-0 w-full h-px"
-        style={{
-          background: "linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.35), transparent)",
-          top: "75%",
-        }}
-        animate={{
-          opacity: [0, 0.45, 0],
-          x: [-50, 150, -50],
-        }}
-        transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 4 }}
-      />
-
-      <motion.div
-        className="absolute top-0 h-full w-px"
-        style={{
-          background: "linear-gradient(180deg, transparent, rgba(20, 184, 166, 0.3), transparent)",
-          left: "15%",
-        }}
-        animate={{
-          opacity: [0, 0.35, 0],
-          y: [-50, 100, -50],
-        }}
-        transition={{ duration: 7, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
-      />
-      <motion.div
-        className="absolute top-0 h-full w-px"
-        style={{
-          background: "linear-gradient(180deg, transparent, rgba(6, 182, 212, 0.25), transparent)",
-          right: "20%",
-        }}
-        animate={{
-          opacity: [0, 0.3, 0],
-          y: [50, -100, 50],
-        }}
-        transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3 }}
-      />
-
-      <motion.div
-        className="absolute left-6 bottom-[20%] text-primary/15 text-5xl font-mono"
-        animate={{ opacity: [0.1, 0.25, 0.1], y: [0, -10, 0] }}
-        transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
       >
-        {"</>"}
+        <svg className="w-full h-full" viewBox="0 0 600 600">
+          <defs>
+            <pattern
+              id="professionalGrid"
+              width="30"
+              height="30"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d="M 30 0 L 0 0 0 30"
+                fill="none"
+                // Darker stroke color
+                stroke={`rgba(${darkCyan}, 0.4)`}
+                strokeWidth="0.8" // Thicker line for detail
+              />
+              <circle cx="0" cy="0" r="1.5" fill={`rgba(${darkCyan}, 0.6)`} /> 
+            </pattern>
+          </defs>
+          <rect width="600" height="600" fill="url(#professionalGrid)" />
+        </svg>
       </motion.div>
 
-      <motion.div
-        className="absolute right-8 top-[12%] text-accent/15 text-4xl font-mono"
-        animate={{ opacity: [0.08, 0.2, 0.08], y: [0, 8, 0] }}
-        transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 }}
-      >
-        {"{ }"}
-      </motion.div>
-
-      <motion.div
-        className="absolute left-[15%] top-[8%] text-primary/12 text-3xl font-mono"
-        animate={{ opacity: [0.06, 0.18, 0.06], rotate: [0, 5, 0] }}
-        transition={{ duration: 7, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
-      >
-        {"[ ]"}
-      </motion.div>
-
-      <motion.div
-        className="absolute right-[18%] bottom-[15%] text-accent/12 text-3xl font-mono"
-        animate={{ opacity: [0.08, 0.2, 0.08], y: [0, -8, 0] }}
-        transition={{ duration: 5.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3 }}
-      >
-        {"=>"}
-      </motion.div>
-
-      <motion.div
-        className="absolute left-[8%] top-[45%] text-primary/10 text-2xl font-mono"
-        animate={{ opacity: [0.05, 0.15, 0.05] }}
-        transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 4 }}
-      >
-        {"//"}
-      </motion.div>
-
-      <motion.div
-        className="absolute right-[5%] top-[55%] text-accent/10 text-2xl font-mono"
-        animate={{ opacity: [0.06, 0.16, 0.06] }}
-        transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2.5 }}
-      >
-        {"( )"}
-      </motion.div>
-
+      {/* Advanced Corner Brackets - SOLID & SHARP */}
       {[
-        { top: "22%", right: "10%", size: 12, delay: 0.5 },
-        { top: "68%", left: "6%", size: 10, delay: 1.5 },
-        { top: "40%", left: "12%", size: 14, delay: 2.5 },
-        { top: "85%", right: "18%", size: 10, delay: 3.5 },
-      ].map((tri, i) => (
+        { top: 'calc(50% - 220px)', left: 'calc(50% - 170px)', rotate: 0 },
+        { top: 'calc(50% - 220px)', left: 'calc(50% + 145px)', rotate: 90 },
+        { top: 'calc(50% + 195px)', left: 'calc(50% - 170px)', rotate: 270 },
+        { top: 'calc(50% + 195px)', left: 'calc(50% + 145px)', rotate: 180 },
+      ].map((corner, i) => (
+        <React.Fragment key={`corner-group-${i}`}>
+          <motion.div
+            className="absolute"
+            style={{
+              top: corner.top,
+              left: corner.left,
+              rotate: corner.rotate,
+            }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{
+              opacity: [0.7, 1, 0.7], // High opacity for sharp detail
+              scale: [0.9, 1.05, 0.9],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              delay: i * 0.3,
+              ease: 'easeInOut',
+            }}
+          >
+            <svg width="40" height="40" viewBox="0 0 40 40">
+              <path
+                d="M0 0 L40 0 M0 0 L0 40"
+                fill="none"
+                stroke={`rgba(${darkCyan}, 0.9)`} // Almost solid
+                strokeWidth="2.5" // Thicker
+                strokeLinecap="square"
+              />
+              <path
+                d="M8 0 L8 8 L0 8"
+                fill="none"
+                stroke={`rgba(${darkCyan}, 0.7)`}
+                strokeWidth="2"
+              />
+              <rect x="36" y="0" width="4" height="4" fill={`rgba(${darkCyan}, 1)`} />
+            </svg>
+          </motion.div>
+        </React.Fragment>
+      ))}
+
+      {/* Vertical Data Lines - DEEP COLORS */}
+      {[0, 1, 2, 3, 4].map((i) => (
         <motion.div
-          key={`tri-${i}`}
-          className="absolute"
+          key={`vline-${i}`}
+          className="absolute left-1/2"
           style={{
-            top: tri.top,
-            right: tri.right,
-            left: tri.left,
-            width: 0,
-            height: 0,
-            borderLeft: `${tri.size / 2}px solid transparent`,
-            borderRight: `${tri.size / 2}px solid transparent`,
-            borderBottom: `${tri.size}px solid rgba(20, 184, 166, 0.2)`,
+            marginLeft: `${-100 + i * 50}px`,
+            width: '1.5px', // Slightly thicker
+            height: '100px',
+            // Stronger gradient
+            background: `linear-gradient(180deg, transparent, rgba(${darkCyan}, 0.9), transparent)`, 
+            top: '15%',
           }}
           animate={{
-            y: [0, -15, 0],
-            rotate: [0, 180, 360],
-            opacity: [0.15, 0.35, 0.15],
+            y: [0, 450, 0],
+            opacity: [0, 1, 0],
           }}
           transition={{
-            duration: 8 + i,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: tri.delay,
+            duration: 7,
+            repeat: Infinity,
+            delay: i * 1.2,
+            ease: 'easeInOut',
           }}
         />
       ))}
 
-      {[
-        { top: "30%", right: "5%", size: 60 },
-        { top: "70%", left: "5%", size: 50 },
-        { top: "10%", left: "30%", size: 40 },
-        { top: "85%", right: "30%", size: 45 },
-      ].map((circle, i) => (
+      {/* Horizontal Scan Lines - DEEP COLORS */}
+      {[0, 1, 2, 3].map((i) => (
         <motion.div
-          key={`pulse-${i}`}
-          className="absolute rounded-full border border-primary/15"
+          key={`hline-${i}`}
+          className="absolute top-1/2"
           style={{
-            top: circle.top,
-            right: circle.right,
-            left: circle.left,
-            width: circle.size,
-            height: circle.size,
+            marginTop: `${-120 + i * 80}px`,
+            height: '1.5px',
+            width: '120px',
+            // Stronger Teal gradient
+            background: `linear-gradient(90deg, transparent, rgba(${darkTeal}, 0.9), transparent)`,
+            left: '50%',
+            marginLeft: '-60px',
           }}
           animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.15, 0, 0.15],
+            scaleX: [0, 1, 0],
+            opacity: [0, 1, 0],
           }}
           transition={{
-            duration: 4 + i * 0.5,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeOut",
+            duration: 3,
+            repeat: Infinity,
             delay: i * 0.8,
+            ease: 'easeInOut',
           }}
         />
       ))}
 
+      {/* Pulsing Frames - DARKER BORDERS */}
+      {[0, 1, 2].map((i) => (
+        <motion.div
+          key={`frame-${i}`}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl border"
+          style={{
+            width: 260 + i * 30,
+            height: 360 + i * 40,
+            borderColor: `rgba(${darkCyan}, 0.5)`, // Darker border
+            borderWidth: '1px',
+          }}
+          animate={{
+            scale: [1, 1.1, 1.1],
+            opacity: [0.8, 0, 0],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            delay: i * 1.3,
+            ease: 'easeOut',
+          }}
+        />
+      ))}
+
+      {/* Particles - SOLID DARK DOTS */}
+      {[...Array(20)].map((_, i) => {
+        const angle = (i * 360) / 20
+        const radius = 160 + (i % 3) * 30
+        const x = Math.cos((angle * Math.PI) / 180) * radius
+        const y = Math.sin((angle * Math.PI) / 180) * radius
+        
+        return (
+          <motion.div
+            key={`particle-${i}`}
+            className="absolute top-1/2 left-1/2"
+            style={{
+              width: '4px',
+              height: '4px',
+              borderRadius: '50%',
+              // Using Solid Dark Colors
+              background: i % 2 === 0 ? `rgb(${darkCyan})` : `rgb(${darkTeal})`, 
+              boxShadow: 'none',
+            }}
+            animate={{
+              x: [0, x * 0.5, x, x * 1.3],
+              y: [0, y * 0.5, y, y * 1.3],
+              opacity: [0, 1, 1, 0],
+              scale: [0, 1.2, 1, 0],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              delay: i * 0.2,
+              ease: 'easeOut',
+            }}
+          />
+        )
+      })}
+
+      {/* Tech Indicator Lines - GRADIENT */}
+      {[
+        { x: -200, y: -100, delay: 0, angle: 0 },
+        { x: 200, y: -100, delay: 0.5, angle: 180 },
+        { x: -200, y: 100, delay: 1, angle: 90 },
+        { x: 200, y: 100, delay: 1.5, angle: 270 },
+      ].map((indicator, i) => (
+        <React.Fragment key={`indicator-group-${i}`}>
+          <motion.div
+            className="absolute top-1/2 left-1/2"
+            style={{
+              x: indicator.x,
+              y: indicator.y,
+              width: '80px',
+              height: '2px',
+            }}
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{
+              opacity: [0, 1, 1, 0],
+              scaleX: [0, 1, 1, 0],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              delay: indicator.delay,
+              ease: 'easeInOut',
+            }}
+          >
+            {/* Deep Cyan Gradient */}
+            <div className="w-full h-full bg-gradient-to-r from-transparent via-cyan-600 to-transparent" />
+          </motion.div>
+          <motion.div
+            className="absolute top-1/2 left-1/2 w-2 h-2 rounded-full"
+            style={{
+              x: indicator.x - 40,
+              y: indicator.y,
+              background: `rgb(${darkCyan})`, // Solid Dark Cyan
+            }}
+            animate={{
+              opacity: [0, 1, 0],
+              scale: [0, 1, 0],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              delay: indicator.delay,
+            }}
+          />
+        </React.Fragment>
+      ))}
+
+      {/* Orbiting Tech Elements - Strong Outlines */}
+      {[0, 1, 2, 3, 4, 5].map((i) => (
+        <motion.div
+          key={`orbit-${i}`}
+          className="absolute top-1/2 left-1/2"
+          style={{
+            width: '12px',
+            height: '12px',
+            borderRadius: i % 3 === 0 ? '50%' : '2px',
+            border: `2px solid rgba(${darkCyan}, 0.9)`, // Very strong border
+            background: 'transparent', 
+            rotate: `${i * 60}deg`,
+          }}
+          animate={{
+            x: [
+              Math.cos((i * 60 * Math.PI) / 180) * 230,
+              Math.cos(((i * 60 + 360) * Math.PI) / 180) * 230,
+            ],
+            y: [
+              Math.sin((i * 60 * Math.PI) / 180) * 230,
+              Math.sin(((i * 60 + 360) * Math.PI) / 180) * 230,
+            ],
+            scale: [0.8, 1.2, 0.8],
+            opacity: [0.5, 1, 0.5],
+            rotate: [i * 60, i * 60 + 180, i * 60],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
+        />
+      ))}
+
+      {/* Main Frame Glow - REDUCED BLUR, INCREASED OPACITY */}
       <motion.div
-        className="absolute top-[20%] left-[5%] w-32 h-32 rounded-full opacity-30"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl"
         style={{
-          background: "radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, transparent 70%)",
-          filter: "blur(20px)",
+          width: '295px',
+          height: '405px',
+          border: `1px solid rgba(${darkCyan}, 0.6)`, // Visible border
+          boxShadow: `0 0 10px rgba(${darkCyan}, 0.25)`, // Tight glow
         }}
         animate={{
-          scale: [1, 1.3, 1],
-          x: [0, 20, 0],
-          y: [0, -15, 0],
+          opacity: [0.6, 0.9, 0.6],
+          boxShadow: [
+            `0 0 10px rgba(${darkCyan}, 0.25)`,
+            `0 0 25px rgba(${darkCyan}, 0.4)`, // Stronger color pop
+            `0 0 10px rgba(${darkCyan}, 0.25)`,
+          ],
         }}
-        transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
       />
 
+      {/* Data Streams - Solid Colors */}
+      {[0, 1, 2, 3].map((i) => (
+        <motion.div
+          key={`stream-${i}`}
+          className="absolute left-1/2 -translate-x-1/2"
+          style={{
+            width: '320px',
+            height: '2px',
+            background: `linear-gradient(90deg, transparent, rgba(${i % 2 === 0 ? darkCyan : darkTeal}, 0.9), transparent)`,
+          }}
+          animate={{
+            top: ['20%', '80%'],
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            delay: i * 1.5,
+            ease: 'easeInOut',
+          }}
+        />
+      ))}
+
+      {/* Grid System - DARKER LINES */}
       <motion.div
-        className="absolute bottom-[25%] right-[8%] w-40 h-40 rounded-full opacity-25"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px]"
+        animate={{
+          rotate: 360,
+        }}
+        transition={{
+          duration: 35,
+          repeat: Infinity,
+          ease: 'linear',
+        }}
+      >
+        <svg className="w-full h-full" viewBox="0 0 450 450">
+          {[0, 60, 120, 180, 240, 300].map((angle) => (
+            <g key={angle} transform={`rotate(${angle} 225 225)`}>
+              <line
+                x1="225"
+                y1="70"
+                x2="225"
+                y2="110"
+                stroke={`rgba(${darkCyan}, 0.7)`}
+                strokeWidth="1.5"
+                strokeDasharray="5 3"
+              />
+              <circle
+                cx="225"
+                cy="60"
+                r="3"
+                fill="none"
+                stroke={`rgba(${darkCyan}, 0.9)`}
+                strokeWidth="1.5"
+              />
+            </g>
+          ))}
+        </svg>
+      </motion.div>
+
+      {/* Tech Badge */}
+      <motion.div
+        className="absolute"
         style={{
-          background: "radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 70%)",
-          filter: "blur(25px)",
+          top: 'calc(50% - 235px)',
+          left: '50%',
+          transform: 'translateX(-50%)',
         }}
         animate={{
-          scale: [1, 1.2, 1],
-          x: [0, -15, 0],
-          y: [0, 20, 0],
+          y: [-3, 3, -3],
+          opacity: [0.7, 1, 0.7],
         }}
-        transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 }}
-      />
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      >
+        <div className="px-4 py-1.5 rounded-full border border-cyan-600 bg-transparent backdrop-blur-[2px]">
+          <span className="text-xs text-cyan-700 font-mono tracking-wider font-bold"></span>
+        </div>
+      </motion.div>
+
+      {/* Code Symbols - Darkest for visibility */}
+      {[
+        { symbol: '</>', x: -250, y: -190, delay: 0, size: 'text-base' },
+        { symbol: '{ }', x: 250, y: -190, delay: 1, size: 'text-sm' },
+        { symbol: '[ ]', x: -250, y: 190, delay: 2, size: 'text-sm' },
+        { symbol: '=>', x: 250, y: 190, delay: 3, size: 'text-base' },
+        { symbol: '( )', x: 0, y: -260, delay: 1.5, size: 'text-xs' },
+        { symbol: '//', x: 0, y: 260, delay: 2.5, size: 'text-xs' },
+      ].map((item, i) => (
+        <motion.div
+          key={`symbol-${i}`}
+          // Changed to text-cyan-600/60 for readability against white
+          className={`absolute top-1/2 left-1/2 text-cyan-600/60 ${item.size} font-mono`} 
+          style={{
+            x: item.x,
+            y: item.y,
+            fontWeight: 800,
+          }}
+          animate={{
+            opacity: [0.4, 0.8, 0.4], 
+            y: [item.y - 8, item.y + 8, item.y - 8],
+            scale: [0.95, 1.05, 0.95],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: item.delay,
+          }}
+        >
+          {item.symbol}
+        </motion.div>
+      ))}
     </>
   )
 }

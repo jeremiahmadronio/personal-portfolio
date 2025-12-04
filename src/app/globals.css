@@ -5,7 +5,7 @@
 
 /* Refined color palette - softer, professional, easy on eyes */
 :root {
-  --background: oklch(0.985 0.002 240);
+  --background: oklch(94.45% 0.00809 254.088);
   --foreground: oklch(0.145 0.015 260);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0.015 260);
@@ -42,7 +42,7 @@
 }
 
 .dark {
-  --background: oklch(0.13 0.015 260);
+  --background: oklch(10.747% 0.02747 258.192);
   --foreground: oklch(0.94 0.008 240);
   --card: oklch(0.17 0.015 260);
   --card-foreground: oklch(0.94 0.008 240);
