@@ -7,6 +7,7 @@ import { ExperienceSection } from "./components/experience-section"
 import { ProjectsSection } from "./components/projects-section"
 import { ContactSection } from "./components/contact-section"
 import { Footer } from "./components/footer"
+import { ChatWidget } from "./components/chat-widget"
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <ProjectsSection />
       <ContactSection />
       <Footer />
+      <ChatWidget />
     </main>
   )
 }

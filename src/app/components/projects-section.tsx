@@ -46,7 +46,7 @@ export function ProjectsSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   return (
-    <section id="work" className="py-24 px-6 bg-muted/30 relative">
+    <section id="work" className="py-24 px-6 relative bg-white dark:bg-[#01161d] dark:text-white">
       <div className="absolute inset-0 dot-pattern opacity-30" />
 
       <div className="max-w-6xl mx-auto relative" ref={ref}>
@@ -56,11 +56,11 @@ export function ProjectsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary dark:text-cyan-400 text-sm font-medium mb-4">
             Portfolio
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">Featured Projects</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground dark:text-white mb-4">Featured Projects</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto dark:text-white/80">
             A collection of projects showcasing my expertise in full-stack development
           </p>
         </motion.div>
@@ -74,10 +74,10 @@ export function ProjectsSection() {
               transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="group relative rounded-2xl bg-card border border-border overflow-hidden hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5"
+              className="group relative rounded-2xl bg-card dark:bg-[#032b38] border border-border overflow-hidden hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5 dark:text-white"
             >
               {/* Project Image - no extra space above or below */}
-              <div className="relative w-full bg-background overflow-hidden rounded-t-2xl" style={{ minHeight: '180px', height: 'auto', display: 'block' }}>
+              <div className="relative w-full bg-background dark:bg-[#01161d] overflow-hidden rounded-t-2xl" style={{ minHeight: '180px', height: 'auto', display: 'block' }}>
                 <Image
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
