@@ -57,7 +57,7 @@ export function ProjectsSection() {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary dark:text-cyan-400 text-sm font-medium mb-4">
-            Portfolio
+            My Work
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground dark:text-white mb-4">Featured Projects</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto dark:text-white/80">

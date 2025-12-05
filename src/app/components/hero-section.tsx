@@ -160,7 +160,7 @@ export function HeroSection() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="rounded-full px-8 border-border hover:bg-primary/10 hover:border-primary hover:text-primary bg-transparent"
+                className="rounded-full px-8 border-2 border-foreground/30 hover:bg-foreground/10 hover:border-foreground/50 bg-transparent text-foreground font-semibold transition-all duration-300"
               >
                 <a href="#contact">Get in Touch</a>
               </Button>
@@ -173,9 +173,10 @@ export function HeroSection() {
               className="flex items-center justify-center lg:justify-start gap-4"
             >
               {[
-                { href: "https://github.com", icon: Github, label: "GitHub" },
-                { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
-                { href: "mailto:hello@jeremiah.dev", icon: Mail, label: "Email" },
+                { name: "GitHub", href: "https://github.com/jeremiahmadronio", icon: Github, label: "GitHub" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/jeremiah-madronio-27a184354/", icon: Linkedin  , label: "LinkedIn" },
+  
+               
               ].map((social) => (
                 <a
                   key={social.label}

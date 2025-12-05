@@ -21,10 +21,10 @@ export function AboutSection() {
       {/* Ito ang magpapatanggal ng "boring" look. Nagbibigay ito ng depth. */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-500/20 via-[#01161d]/40 to-transparent -z-40 pointer-events-none" />
 
-      {/* 3. Horizontal Light Line (Tech Accent) */}
+     
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent opacity-50" />
 
-      {/* 4. Subtle Orbs for Ambient Light */}
+    
       <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 -right-20 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[100px] pointer-events-none" />
 
@@ -38,6 +38,9 @@ export function AboutSection() {
           className="text-center mb-20"
         >
           {/* Headline */}
+           <span className="inline-block px-4 py-1.5 rounded-full bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-400 text-sm font-medium mb-4 border border-cyan-200 dark:border-cyan-500/20">
+           My Anchor
+          </span>
           <h2 className="text-5xl sm:text-6xl font-bold mb-6 text-gray-900 dark:text-white drop-shadow-lg">
             About Me
           </h2>

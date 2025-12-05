@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { MessageCircle, X, Send } from "lucide-react"
+import { MessageCircle, X, Send, ArrowDown } from "lucide-react" 
 import { motion, AnimatePresence } from "framer-motion"
 
 interface Message {
@@ -13,14 +13,14 @@ interface Message {
 
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
+  const [showScrollButton, setShowScrollButton] = useState(false) 
 
-  // 👇 FUNCTIONALITY CHANGE: Load messages from Local Storage on startup
+
   const [messages, setMessages] = useState<Message[]>(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('jeremiah_chat_history')
+      const saved = sessionStorage.getItem('jeremiah_chat_session') 
       if (saved) {
         try {
-          // Parse the stored string back into an object and fix the Date format
           return JSON.parse(saved).map((msg: any) => ({
             ...msg,
             timestamp: new Date(msg.timestamp)
@@ -30,7 +30,7 @@ export function ChatWidget() {
         }
       }
     }
-    // Default message if no history exists
+   
     return [
       {
         id: "1",
@@ -43,25 +43,52 @@ export function ChatWidget() {
 
   const [inputValue, setInputValue] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  
+ 
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const chatContainerRef = useRef<HTMLDivElement>(null) 
+
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    if (messagesEndRef.current) {
+      setTimeout(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+      }, 0)
+    }
   }
 
-  // 👇 FUNCTIONALITY CHANGE: Save to Local Storage whenever messages change
+
+  const handleScroll = () => {
+    if (chatContainerRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = chatContainerRef.current
+
+      const isNotAtBottom = scrollHeight - (scrollTop + clientHeight) > 50
+      setShowScrollButton(isNotAtBottom)
+    }
+  }
+
+
   useEffect(() => {
     if (messages.length > 0) {
-      localStorage.setItem('jeremiah_chat_history', JSON.stringify(messages))
+      sessionStorage.setItem('jeremiah_chat_session', JSON.stringify(messages))
     }
     scrollToBottom()
   }, [messages])
+
+
+  useEffect(() => {
+    if (isOpen) {
+
+      setTimeout(() => {
+        scrollToBottom()
+      }, 100)
+    }
+  }, [isOpen])
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!inputValue.trim()) return
 
-    // Add user message
     const userMessage: Message = {
       id: Date.now().toString(),
       text: inputValue,
@@ -73,42 +100,47 @@ export function ChatWidget() {
     setInputValue("")
     setIsLoading(true)
 
-    // Simulate bot response delay
-    setTimeout(() => {
+    // Send message to email notification API
+    try {
+      await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: inputValue, isInitial: false }),
+      })
+    } catch (error) {
+      console.error("Failed to send chat notification:", error)
+    }
+
+    // Get AI response
+    try {
+      const aiResponse = await fetch("/api/ai-api", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: inputValue }),
+      })
+
+      const data = await aiResponse.json()
+      const botReply = data.reply || "Sorry, I couldn't process that. Please try again."
+
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: getBotResponse(inputValue),
+        text: botReply,
         sender: "bot",
         timestamp: new Date(),
       }
       setMessages((prev) => [...prev, botMessage])
+    } catch (error) {
+      console.error("Failed to get AI response:", error)
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: "Sorry, I'm having trouble connecting right now. Please try again later.",
+        sender: "bot",
+        timestamp: new Date(),
+      }
+      setMessages((prev) => [...prev, errorMessage])
+    } finally {
       setIsLoading(false)
-    }, 500)
-  }
-
-  const getBotResponse = (userInput: string): string => {
-    const input = userInput.toLowerCase()
-
-    if (input.includes("hello") || input.includes("hi")) {
-      return "Hello! 👋 I'm here to help. What can I do for you?"
     }
-    if (input.includes("project") || input.includes("work")) {
-      return "I have several projects showcased in my portfolio. Feel free to check them out in the Work section!"
-    }
-    if (input.includes("contact") || input.includes("hire")) {
-      return "Great! I'd love to work with you. You can reach out through the Contact section or via email at jeremiahmadronio2003@gmail.com"
-    }
-    if (input.includes("stack") || input.includes("tech")) {
-      return "I work with React, TypeScript, Next.js, Tailwind CSS, Node.js, and more. Check the Tech Stack section for details!"
-    }
-    if (input.includes("experience")) {
-      return "I have experience in full-stack development, building scalable web applications, and working with modern technologies."
-    }
-    if (input.includes("thank")) {
-      return "You're welcome! 😊 Feel free to ask me anything else."
-    }
-
-    return "That's a great question! Feel free to explore my portfolio or reach out through the Contact section. You can also connect with me on LinkedIn or GitHub!"
   }
 
   return (
@@ -154,7 +186,7 @@ export function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-28 right-4 sm:bottom-32 sm:right-8 md:bottom-36 md:right-10 z-40 w-[calc(100vw-32px)] sm:w-96 max-w-md h-[500px] sm:h-[600px] rounded-2xl bg-white dark:bg-[#032b38] border border-gray-200 dark:border-cyan-500/30 shadow-2xl dark:shadow-cyan-500/10 flex flex-col overflow-hidden"
+            className="fixed bottom-28 right-4 sm:bottom-32 sm:right-8 md:bottom-36 md:right-10 z-40 w-[calc(100vw-32px)] sm:w-96 max-w-md h-[500px] sm:h-[500px] rounded-2xl bg-white dark:bg-[#032b38] border border-gray-200 dark:border-cyan-500/30 shadow-2xl dark:shadow-cyan-500/10 flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-cyan-600 via-cyan-500 to-cyan-600 dark:from-cyan-600 dark:via-cyan-500 dark:to-teal-600 p-4 text-white shadow-lg flex-shrink-0">
@@ -173,8 +205,12 @@ export function ChatWidget() {
               </div>
             </div>
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50 dark:bg-[#01161d]">
+            {/* Messages Container */}
+            <div 
+                ref={chatContainerRef} // Attached ref for scrolling
+                onScroll={handleScroll} // Listen to scroll events
+                className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50 dark:bg-[#01161d] relative"
+            >
               {messages.map((message) => (
                 <motion.div
                   key={message.id}
@@ -193,6 +229,7 @@ export function ChatWidget() {
                   </div>
                 </motion.div>
               ))}
+              
               {isLoading && (
                 <div className="flex justify-start">
                   <div className="bg-white dark:bg-[#054052] text-gray-900 dark:text-white border border-gray-200 dark:border-cyan-500/20 px-4 py-2 rounded-lg rounded-bl-none">
@@ -204,7 +241,26 @@ export function ChatWidget() {
                   </div>
                 </div>
               )}
+              
+              {/* Invisible element to mark the bottom */}
               <div ref={messagesEndRef} />
+
+              {/* 👇 SCROLL DOWN BUTTON (Like Messenger - Sticky) */}
+              <AnimatePresence>
+                {showScrollButton && (
+                  <motion.button
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.2 }}
+                    onClick={scrollToBottom}
+                    className="sticky bottom-0 left-1/2 transform -translate-x-1/2 mb-2 p-2.5 bg-cyan-600 dark:bg-cyan-500 hover:bg-cyan-700 dark:hover:bg-cyan-600 text-white rounded-full shadow-lg transition-all duration-200 z-20 flex items-center justify-center"
+                  >
+                    <ArrowDown className="w-4 h-4" />
+                  </motion.button>
+                )}
+              </AnimatePresence>
+
             </div>
 
             {/* Input */}

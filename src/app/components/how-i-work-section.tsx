@@ -160,6 +160,9 @@ export function HowIWorkSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-24 relative z-10"
         >
+             <span className="inline-block px-4 py-1.5 rounded-full bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-400 text-sm font-medium mb-4 border border-cyan-200 dark:border-cyan-500/20">
+           My Blueprint
+          </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 drop-shadow-lg">
             How I Work
           </h2>

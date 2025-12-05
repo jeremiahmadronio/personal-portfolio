@@ -4,14 +4,14 @@ import type React from "react"
 
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import { Mail, Github, Linkedin, Send, CheckCircle2, AlertCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const socialLinks = [
   { name: "GitHub", href: "https://github.com/jeremiahmadronio", icon: Github },
   { name: "LinkedIn", href: "https://www.linkedin.com/in/jeremiah-madronio-27a184354/", icon: Linkedin },
-  { name: "Email", href: "jeremiahmadronio2003@gmail.com", icon: Mail },
+  
 ]
 
 export function ContactSection() {
@@ -21,15 +21,24 @@ export function ContactSection() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [status, setStatus] = useState<null | "success" | "error">(null)
+  const [errorTimeout, setErrorTimeout] = useState<NodeJS.Timeout | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault?.()
 
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      // Clear any existing timeout
+      if (errorTimeout) clearTimeout(errorTimeout)
+      
       setStatus("error")
+      const newTimeout = setTimeout(() => setStatus(null), 5000)
+      setErrorTimeout(newTimeout)
       return
     }
 
+    
+    if (errorTimeout) clearTimeout(errorTimeout)
+    
     setIsSubmitting(true)
     setStatus(null)
 
@@ -49,13 +58,24 @@ export function ContactSection() {
       setStatus("error")
     } finally {
       setIsSubmitting(false)
-      setTimeout(() => setStatus(null), 5000)
+      // Clear any existing timeout
+      if (errorTimeout) clearTimeout(errorTimeout)
+      
+      const newTimeout = setTimeout(() => setStatus(null), 5000)
+      setErrorTimeout(newTimeout)
     }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (errorTimeout) clearTimeout(errorTimeout)
+    }
+  }, [errorTimeout])
 
   return (
     <section id="contact" className="py-24 px-6 relative overflow-hidden bg-white dark:bg-[#01161d]">
@@ -71,7 +91,7 @@ export function ContactSection() {
       {/* 4. Subtle Orbs for Ambient Light */}
       <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 -right-20 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[100px] pointer-events-none" />
-<div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[150px]" />
       </div>
 
@@ -103,37 +123,40 @@ export function ContactSection() {
           >
             <div className="space-y-4">
               <h3 className="text-4xl lg:text-5xl font-bold text-foreground">
-                Let’s Create Impact
+                Let's Create Impact
                 <br />
                 <span className="text-cyan-600 dark:text-cyan-400">Together</span>
               </h3>
-            <div className="space-y-4 text-base sm:text-lg text-foreground/80 leading-relaxed">
-              <p>
-           I’m open to collaboration, freelance work, and exciting ideas. If you have a project or just wanna connect, I’ll get back to you ASAP.
-              </p>
-            </div>
+              <div className="space-y-4 text-base sm:text-lg text-foreground/80 leading-relaxed">
+                <p>
+                  I'm open to collaboration, freelance work, and exciting ideas. If you have a project or just wanna connect, I'll get back to you ASAP.
+                </p>
+              </div>
             </div>
 
             {/* Social Icons */}
-            <div className="flex gap-3 pt-4">
+            <div className="flex flex-col gap-4 pt-4">
               {socialLinks.map((link) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ y: -2, scale: 1.05 }}
+                  whileHover={{ x: 2, scale: 1.02 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center justify-center w-12 h-12 rounded-full border border-border bg-card hover:bg-cyan-50 dark:hover:bg-cyan-950/30 hover:border-cyan-500/50 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300"
-                  title={link.name}
+                  className="flex items-center gap-3 w-fit"
                 >
-                  <link.icon className="w-5 h-5" />
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full border border-border bg-card hover:bg-cyan-50 dark:hover:bg-cyan-950/30 hover:border-cyan-500/50 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300 flex-shrink-0">
+                    <link.icon className="w-5 h-5" />
+                  </div>
+                  <span className="text-sm font-medium text-foreground">
+                    {link.name === "GitHub" ? "jeremiahmadronio" : "Jeremiah Madronio"}
+                  </span>
                 </motion.a>
               ))}
             </div>
           </motion.div>
 
-          
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -141,7 +164,7 @@ export function ContactSection() {
             className="w-full"
           >
             <div className="bg-white dark:bg-[#032b38] border border-gray-200 dark:border-cyan-500/30 rounded-2xl shadow-lg dark:shadow-cyan-500/10 p-8 backdrop-blur-sm">
-              <form className="space-y-6" onSubmit={handleSubmit}>
+              <form id="contact-form" className="space-y-6" onSubmit={handleSubmit}>
                 {/* Name Field */}
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-cyan-300 ml-1">

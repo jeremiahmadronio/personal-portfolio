@@ -57,7 +57,7 @@ export function ExperienceSection() {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            Career
+          My Evolution
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">Professional Journey</h2>
         </motion.div>
