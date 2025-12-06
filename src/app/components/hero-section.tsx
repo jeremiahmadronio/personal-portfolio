@@ -8,7 +8,7 @@ import { ProfessionalEffects } from "./background-shapes"
 
 export function HeroSection() {
   return (
-    <section className="min-h-screen flex items-center justify-center pt-16 px-0 overflow-hidden relative bg-background">
+    <section id="hero" className="min-h-screen flex items-center justify-center pt-16 px-0 overflow-hidden relative bg-background">
       <div className="absolute inset-0 overflow-hidden">
         {/* UPDATED: Stronger Background Colors 
            Tinaasan ko ang opacity (mula /5 naging /20) para lumitaw ang kulay 
@@ -111,7 +111,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-2 relative z-10"
+              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight mb-2 relative z-10"
             >
               <span className="text-foreground">Jeremiah</span>
             </motion.h1>
@@ -119,7 +119,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25 }}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-primary mb-6"
+              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight text-primary mb-6"
             >
               Madronio
             </motion.h1>
@@ -130,7 +130,7 @@ export function HeroSection() {
               transition={{ delay: 0.3 }}
               className="text-lg sm:text-xl text-muted-foreground mb-4 max-w-xl mx-auto lg:mx-0 leading-relaxed"
             >
-              I build clean, scalable web applications with modern technologies
+              I build web applications that matter—combining clean code practices, scalable architecture, and modern technologies to create digital experiences that solve real problems and delight users every step of the way
             </motion.p>
 
             <motion.p
@@ -139,9 +139,9 @@ export function HeroSection() {
               transition={{ delay: 0.35 }}
               className="text-base text-muted-foreground/80 mb-8 max-w-xl mx-auto lg:mx-0"
             >
-              Currently focused on <span className="text-primary font-medium">React</span>,{" "}
-              <span className="text-primary font-medium">TypeScript</span>, and{" "}
-              <span className="text-primary font-medium">Java Spring Boot</span>
+              Currently focused on <span className="text-primary font-medium">AI-powered web applications</span>{" "}
+             and{" "}
+              <span className="text-primary font-medium"> automation tools</span>
             </motion.p>
 
             <motion.div

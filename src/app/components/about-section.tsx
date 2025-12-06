@@ -72,7 +72,7 @@ export function AboutSection() {
                 I'm a <strong className="text-foreground font-semibold border-b border-cyan-500/30">Full Stack Developer</strong> specializing in backend architecture. I build clean, purposeful solutions that solve real problems.
               </p>
               <p>
-                With hands-on experience across cloud platforms and modern frameworks, I focus on understanding how systems truly work to deliver reliable code that stands the test of time.
+                With hands-on experience across web development and modern frameworks, I focus on understanding how systems truly work to deliver reliable code that stands the test of time.
               </p>
             </div>
 

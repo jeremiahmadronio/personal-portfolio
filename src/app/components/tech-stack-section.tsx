@@ -6,7 +6,7 @@ import { useRef, useState } from "react"
 import { Layers, Hexagon, Network, Globe } from "lucide-react"
 import { 
    SiSpringboot, SiPython, SiGo, SiReact, SiTypescript, SiTailwindcss, 
-  SiPostgresql, SiMongodb, SiMysql, SiDocker, SiApachekafka, SiGit, SiGithubactions 
+  SiPostgresql, SiMongodb, SiMysql, SiDocker, SiApachekafka, SiGit, SiGithubactions, SiPostman 
 } from 'react-icons/si';
 
 
@@ -40,6 +40,7 @@ const technologies = [
   { name: "Docker", category: "DevOps", icon: <SiDocker className="w-8 h-8" /> },
   { name: "Git", category: "DevOps", icon: <SiGit className="w-8 h-8" /> }, 
   { name: "Kafka", category: "DevOps", icon: <SiApachekafka className="w-8 h-8" /> },
+  { name: "Postman", category: "DevOps", icon: <SiPostman className="w-8 h-8" /> },
   // 💥 GitHub Actions Fix: Ito ang official slanted box logo. Dahil library-based na ito, wala nang glitch.
   { name: "GitHub Actions", category: "DevOps", icon: <SiGithubactions className="w-8 h-8" /> },
 ];

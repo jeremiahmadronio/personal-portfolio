@@ -20,7 +20,8 @@ export function ContactSection() {
 
   const [formData, setFormData] = useState({ name: "", email: "", message: "" })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [status, setStatus] = useState<null | "success" | "error">(null)
+  const [status, setStatus] = useState<null | "success" | "error" | "validating">(null)
+  const [errorMessage, setErrorMessage] = useState("")
   const [errorTimeout, setErrorTimeout] = useState<NodeJS.Timeout | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -31,18 +32,39 @@ export function ContactSection() {
       if (errorTimeout) clearTimeout(errorTimeout)
       
       setStatus("error")
+      setErrorMessage("Please fill in all fields.")
       const newTimeout = setTimeout(() => setStatus(null), 5000)
       setErrorTimeout(newTimeout)
       return
     }
 
-    
+    // Clear previous state
     if (errorTimeout) clearTimeout(errorTimeout)
     
     setIsSubmitting(true)
-    setStatus(null)
+    setStatus("validating")
+    setErrorMessage("")
 
     try {
+      // First: Validate message with AI
+      const validateRes = await fetch("/api/validate-message", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: formData.message }),
+      })
+
+      const validateData = await validateRes.json()
+
+      if (!validateRes.ok || !validateData.isValid) {
+        setStatus("error")
+        setErrorMessage(validateData.reason || "Message contains inappropriate content.")
+        const newTimeout = setTimeout(() => setStatus(null), 5000)
+        setErrorTimeout(newTimeout)
+        setIsSubmitting(false)
+        return
+      }
+
+      // Message is valid - proceed with sending
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -53,9 +75,11 @@ export function ContactSection() {
 
       setFormData({ name: "", email: "", message: "" })
       setStatus("success")
+      setErrorMessage("")
     } catch (error) {
       console.error("Submit error:", error)
       setStatus("error")
+      setErrorMessage("Failed to send message. Please try again.")
     } finally {
       setIsSubmitting(false)
       // Clear any existing timeout
@@ -231,6 +255,12 @@ export function ContactSection() {
                 </div>
 
                 {/* Status Messages */}
+                {status === "validating" && (
+                  <div className="flex items-center gap-2 text-blue-600 dark:text-blue-300 bg-blue-50 dark:bg-blue-500/20 border border-blue-200 dark:border-blue-500/40 p-3 rounded-lg text-sm font-medium animate-in fade-in slide-in-from-top-2">
+                    <span className="w-4 h-4 border-2 border-blue-600 dark:border-blue-300 border-t-transparent rounded-full animate-spin" />
+                    <span>Analyzing message...</span>
+                  </div>
+                )}
                 {status === "success" && (
                   <div className="flex items-center gap-2 text-green-600 dark:text-green-300 bg-green-50 dark:bg-green-500/20 border border-green-200 dark:border-green-500/40 p-3 rounded-lg text-sm font-medium animate-in fade-in slide-in-from-top-2">
                     <CheckCircle2 className="w-4 h-4" />
@@ -240,7 +270,7 @@ export function ContactSection() {
                 {status === "error" && (
                   <div className="flex items-center gap-2 text-red-600 dark:text-red-300 bg-red-50 dark:bg-red-500/20 border border-red-200 dark:border-red-500/40 p-3 rounded-lg text-sm font-medium animate-in fade-in slide-in-from-top-2">
                     <AlertCircle className="w-4 h-4" />
-                    <span>Please fill in all fields correctly.</span>
+                    <span>{errorMessage}</span>
                   </div>
                 )}
 
@@ -252,7 +282,7 @@ export function ContactSection() {
                 >
                   {isSubmitting ? (
                     <span className="flex items-center justify-center gap-2">
-                      Sending{" "}
+                      {status === "validating" ? "Analyzing" : "Sending"}{" "}
                       <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
                     </span>
                   ) : (
