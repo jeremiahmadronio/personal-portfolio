@@ -4,7 +4,7 @@ import { Resend } from 'resend'
 
 
 export async function POST(request: Request) {
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    const resend = new Resend(process.env.RESEND_API_KEY || 're_123');
   try {
     const { name, email, message } = await request.json()
 
