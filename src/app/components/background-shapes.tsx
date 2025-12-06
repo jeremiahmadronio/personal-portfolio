@@ -22,18 +22,12 @@ export function ProfessionalEffects() {
           }}
           animate={{
             rotate: i % 2 === 0 ? 360 : -360,
-            scale: [1, 1.02, 1],
           }}
           transition={{
             rotate: {
               duration: 25 + i * 5,
               repeat: Infinity,
               ease: 'linear',
-            },
-            scale: {
-              duration: 4,
-              repeat: Infinity,
-              ease: 'easeInOut',
             },
           }}
         >
@@ -112,84 +106,15 @@ export function ProfessionalEffects() {
       ))}
 
       {/* Vertical Data Lines - DEEP COLORS */}
-      {[0, 1].map((i) => (
-        <motion.div
-          key={`vline-${i}`}
-          className="absolute left-1/2"
-          style={{
-            marginLeft: `${-100 + i * 50}px`,
-            width: '1.5px', // Slightly thicker
-            height: '100px',
-            // Stronger gradient
-            background: `linear-gradient(180deg, transparent, rgba(${darkCyan}, 0.9), transparent)`, 
-            top: '15%',
-          }}
-          animate={{
-            y: [0, 450, 0],
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: 7,
-            repeat: Infinity,
-            delay: i * 1.2,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
 
       {/* Horizontal Scan Lines - DEEP COLORS */}
-      {[0, 1].map((i) => (
-        <motion.div
-          key={`hline-${i}`}
-          className="absolute top-1/2"
-          style={{
-            marginTop: `${-120 + i * 80}px`,
-            height: '1.5px',
-            width: '120px',
-            // Stronger Teal gradient
-            background: `linear-gradient(90deg, transparent, rgba(${darkTeal}, 0.9), transparent)`,
-            left: '50%',
-            marginLeft: '-60px',
-          }}
-          animate={{
-            scaleX: [0, 1, 0],
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            delay: i * 0.8,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
 
       {/* Pulsing Frames - DARKER BORDERS */}
-      {[0].map((i) => (
-        <motion.div
-          key={`frame-${i}`}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl border"
-          style={{
-            width: 260,
-            height: 360,
-            borderColor: `rgba(${darkCyan}, 0.5)`, // Darker border
-            borderWidth: '1px',
-          }}
-          animate={{
-            opacity: [0.8, 0.2, 0.8],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
 
       {/* Particles - SOLID DARK DOTS */}
-      {[...Array(8)].map((_, i) => {
-        const angle = (i * 360) / 20
-        const radius = 160 + (i % 3) * 30
+      {[...Array(5)].map((_, i) => {
+        const angle = (i * 360) / 5
+        const radius = 160
         const x = Math.cos((angle * Math.PI) / 180) * radius
         const y = Math.sin((angle * Math.PI) / 180) * radius
         
@@ -201,20 +126,18 @@ export function ProfessionalEffects() {
               width: '4px',
               height: '4px',
               borderRadius: '50%',
-              // Using Solid Dark Colors
               background: i % 2 === 0 ? `rgb(${darkCyan})` : `rgb(${darkTeal})`, 
               boxShadow: 'none',
             }}
             animate={{
-              x: [0, x * 0.5, x, x * 1.3],
-              y: [0, y * 0.5, y, y * 1.3],
-              opacity: [0, 1, 1, 0],
-              scale: [0, 1.2, 1, 0],
+              x: [0, x * 0.6],
+              y: [0, y * 0.6],
+              opacity: [0, 1, 0.5],
             }}
             transition={{
-              duration: 6,
+              duration: 8,
               repeat: Infinity,
-              delay: i * 0.2,
+              delay: i * 0.4,
               ease: 'easeOut',
             }}
           />
@@ -222,82 +145,32 @@ export function ProfessionalEffects() {
       })}
 
       {/* Tech Indicator Lines - GRADIENT */}
-      {[
-        { x: -200, y: -100, delay: 0, angle: 0 },
-        { x: 200, y: -100, delay: 0.5, angle: 180 },
-      ].map((indicator, i) => (
-        <React.Fragment key={`indicator-group-${i}`}>
-          <motion.div
-            className="absolute top-1/2 left-1/2"
-            style={{
-              x: indicator.x,
-              y: indicator.y,
-              width: '80px',
-              height: '2px',
-            }}
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{
-              opacity: [0, 1, 1, 0],
-              scaleX: [0, 1, 1, 0],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              delay: indicator.delay,
-              ease: 'easeInOut',
-            }}
-          >
-            {/* Deep Cyan Gradient */}
-            <div className="w-full h-full bg-gradient-to-r from-transparent via-cyan-600 to-transparent" />
-          </motion.div>
-          <motion.div
-            className="absolute top-1/2 left-1/2 w-2 h-2 rounded-full"
-            style={{
-              x: indicator.x - 40,
-              y: indicator.y,
-              background: `rgb(${darkCyan})`, // Solid Dark Cyan
-            }}
-            animate={{
-              opacity: [0, 1, 0],
-              scale: [0, 1, 0],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              delay: indicator.delay,
-            }}
-          />
-        </React.Fragment>
-      ))}
 
       {/* Orbiting Tech Elements - Strong Outlines */}
-      {[0, 1, 2].map((i) => (
+      {[0, 1].map((i) => (
         <motion.div
           key={`orbit-${i}`}
           className="absolute top-1/2 left-1/2"
           style={{
-            width: '12px',
-            height: '12px',
-            borderRadius: i % 3 === 0 ? '50%' : '2px',
-            border: `2px solid rgba(${darkCyan}, 0.9)`, // Very strong border
+            width: '10px',
+            height: '10px',
+            borderRadius: '50%',
+            border: `2px solid rgba(${darkCyan}, 0.8)`,
             background: 'transparent', 
-            rotate: `${i * 60}deg`,
           }}
           animate={{
             x: [
-              Math.cos((i * 60 * Math.PI) / 180) * 230,
-              Math.cos(((i * 60 + 360) * Math.PI) / 180) * 230,
+              Math.cos((i * 180 * Math.PI) / 180) * 200,
+              Math.cos(((i * 180 + 360) * Math.PI) / 180) * 200,
             ],
             y: [
-              Math.sin((i * 60 * Math.PI) / 180) * 230,
-              Math.sin(((i * 60 + 360) * Math.PI) / 180) * 230,
+              Math.sin((i * 180 * Math.PI) / 180) * 200,
+              Math.sin(((i * 180 + 360) * Math.PI) / 180) * 200,
             ],
-            scale: [0.8, 1.2, 0.8],
-            opacity: [0.5, 1, 0.5],
-            rotate: [i * 60, i * 60 + 180, i * 60],
+            opacity: [0.6, 0.9, 0.6],
           }}
           transition={{
-            duration: 18,
+            duration: 20,
             repeat: Infinity,
             ease: 'linear',
           }}
@@ -312,81 +185,13 @@ export function ProfessionalEffects() {
           height: '405px',
           border: `1px solid rgba(${darkCyan}, 0.6)`, // Visible border
           boxShadow: `0 0 10px rgba(${darkCyan}, 0.25)`, // Tight glow
-        }}
-        animate={{
-          opacity: [0.6, 0.9, 0.6],
-          boxShadow: [
-            `0 0 10px rgba(${darkCyan}, 0.25)`,
-            `0 0 25px rgba(${darkCyan}, 0.4)`, // Stronger color pop
-            `0 0 10px rgba(${darkCyan}, 0.25)`,
-          ],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: 'easeInOut',
+          opacity: 0.7,
         }}
       />
 
       {/* Data Streams - Solid Colors */}
-      {[0, 1].map((i) => (
-        <motion.div
-          key={`stream-${i}`}
-          className="absolute left-1/2 -translate-x-1/2"
-          style={{
-            width: '320px',
-            height: '2px',
-            background: `linear-gradient(90deg, transparent, rgba(${i % 2 === 0 ? darkCyan : darkTeal}, 0.9), transparent)`,
-          }}
-          animate={{
-            top: ['20%', '80%'],
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            delay: i * 1.5,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
 
       {/* Grid System - DARKER LINES */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px]"
-        animate={{
-          rotate: 360,
-        }}
-        transition={{
-          duration: 35,
-          repeat: Infinity,
-          ease: 'linear',
-        }}
-      >
-        <svg className="w-full h-full" viewBox="0 0 450 450">
-          {[0, 60, 120, 180, 240, 300].map((angle) => (
-            <g key={angle} transform={`rotate(${angle} 225 225)`}>
-              <line
-                x1="225"
-                y1="70"
-                x2="225"
-                y2="110"
-                stroke={`rgba(${darkCyan}, 0.7)`}
-                strokeWidth="1.5"
-                strokeDasharray="5 3"
-              />
-              <circle
-                cx="225"
-                cy="60"
-                r="3"
-                fill="none"
-                stroke={`rgba(${darkCyan}, 0.9)`}
-                strokeWidth="1.5"
-              />
-            </g>
-          ))}
-        </svg>
-      </motion.div>
 
       {/* Tech Badge */}
       <div
