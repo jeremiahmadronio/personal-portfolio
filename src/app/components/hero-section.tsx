@@ -233,12 +233,10 @@ export function HeroSection() {
                   }}
                 />
 
-                {/* TINANGGAL KO NA RIN YUNG "MIST/SMOKE" DIVS DITO.
-                   Yun yung ulap sa baba na nagmumukhang puti sa light mode.
-                */}
+             
 
                 <Image
-                  src="/images/a.jfif"
+                  src="/images/a.jpg"
                   alt="Jeremiah Madronio"
                   fill
                   className="object-cover object-top"
