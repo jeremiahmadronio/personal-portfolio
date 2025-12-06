@@ -12,7 +12,7 @@ import {
 
 const technologies = [
   // --- BACKEND ---
-  
+  //asd
   { name: "Spring Boot", category: "Backend", icon: <SiSpringboot className="w-8 h-8" /> },
   { name: "Python", category: "Backend", icon: <SiPython className="w-8 h-8" /> },
   { name: "Golang", category: "Backend", icon: <SiGo className="w-8 h-8" /> },
