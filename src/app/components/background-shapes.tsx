@@ -10,7 +10,7 @@ export function ProfessionalEffects() {
   return (
     <>
       {/* Multi-layered Rotating Rings - SHARPER & DARKER FOR VISIBILITY */}
-      {[0, 1, 2, 3, 4].map((i) => (
+      {[0, 1, 2].map((i) => (
         <motion.div
           key={`ring-${i}`}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
@@ -50,12 +50,7 @@ export function ProfessionalEffects() {
       {/* Enhanced Grid Background - VISIBLE LINES */}
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px]"
-        animate={{ opacity: [0.3, 0.5, 0.3], rotate: [0, 5, 0] }} // Higher opacity for visibility
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
+        style={{ opacity: 0.3 }}
       >
         <svg className="w-full h-full" viewBox="0 0 600 600">
           <defs>
@@ -93,17 +88,7 @@ export function ProfessionalEffects() {
               top: corner.top,
               left: corner.left,
               rotate: corner.rotate,
-            }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{
-              opacity: [0.7, 1, 0.7], // High opacity for sharp detail
-              scale: [0.9, 1.05, 0.9],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              delay: i * 0.3,
-              ease: 'easeInOut',
+              opacity: 0.8,
             }}
           >
             <svg width="40" height="40" viewBox="0 0 40 40">
@@ -127,7 +112,7 @@ export function ProfessionalEffects() {
       ))}
 
       {/* Vertical Data Lines - DEEP COLORS */}
-      {[0, 1, 2, 3, 4].map((i) => (
+      {[0, 1].map((i) => (
         <motion.div
           key={`vline-${i}`}
           className="absolute left-1/2"
@@ -153,7 +138,7 @@ export function ProfessionalEffects() {
       ))}
 
       {/* Horizontal Scan Lines - DEEP COLORS */}
-      {[0, 1, 2, 3].map((i) => (
+      {[0, 1].map((i) => (
         <motion.div
           key={`hline-${i}`}
           className="absolute top-1/2"
@@ -180,31 +165,29 @@ export function ProfessionalEffects() {
       ))}
 
       {/* Pulsing Frames - DARKER BORDERS */}
-      {[0, 1, 2].map((i) => (
+      {[0].map((i) => (
         <motion.div
           key={`frame-${i}`}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl border"
           style={{
-            width: 260 + i * 30,
-            height: 360 + i * 40,
+            width: 260,
+            height: 360,
             borderColor: `rgba(${darkCyan}, 0.5)`, // Darker border
             borderWidth: '1px',
           }}
           animate={{
-            scale: [1, 1.1, 1.1],
-            opacity: [0.8, 0, 0],
+            opacity: [0.8, 0.2, 0.8],
           }}
           transition={{
-            duration: 4,
+            duration: 6,
             repeat: Infinity,
-            delay: i * 1.3,
-            ease: 'easeOut',
+            ease: 'easeInOut',
           }}
         />
       ))}
 
       {/* Particles - SOLID DARK DOTS */}
-      {[...Array(20)].map((_, i) => {
+      {[...Array(8)].map((_, i) => {
         const angle = (i * 360) / 20
         const radius = 160 + (i % 3) * 30
         const x = Math.cos((angle * Math.PI) / 180) * radius
@@ -242,8 +225,6 @@ export function ProfessionalEffects() {
       {[
         { x: -200, y: -100, delay: 0, angle: 0 },
         { x: 200, y: -100, delay: 0.5, angle: 180 },
-        { x: -200, y: 100, delay: 1, angle: 90 },
-        { x: 200, y: 100, delay: 1.5, angle: 270 },
       ].map((indicator, i) => (
         <React.Fragment key={`indicator-group-${i}`}>
           <motion.div
@@ -290,7 +271,7 @@ export function ProfessionalEffects() {
       ))}
 
       {/* Orbiting Tech Elements - Strong Outlines */}
-      {[0, 1, 2, 3, 4, 5].map((i) => (
+      {[0, 1, 2].map((i) => (
         <motion.div
           key={`orbit-${i}`}
           className="absolute top-1/2 left-1/2"
@@ -348,7 +329,7 @@ export function ProfessionalEffects() {
       />
 
       {/* Data Streams - Solid Colors */}
-      {[0, 1, 2, 3].map((i) => (
+      {[0, 1].map((i) => (
         <motion.div
           key={`stream-${i}`}
           className="absolute left-1/2 -translate-x-1/2"
@@ -408,27 +389,19 @@ export function ProfessionalEffects() {
       </motion.div>
 
       {/* Tech Badge */}
-      <motion.div
+      <div
         className="absolute"
         style={{
           top: 'calc(50% - 235px)',
           left: '50%',
           transform: 'translateX(-50%)',
-        }}
-        animate={{
-          y: [-3, 3, -3],
-          opacity: [0.7, 1, 0.7],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: 'easeInOut',
+          opacity: 0.8,
         }}
       >
         <div className="px-4 py-1.5 rounded-full border border-cyan-600 bg-transparent backdrop-blur-[2px]">
           <span className="text-xs text-cyan-700 font-mono tracking-wider font-bold"></span>
         </div>
-      </motion.div>
+      </div>
 
       {/* Code Symbols - Darkest for visibility */}
       {[
@@ -436,8 +409,6 @@ export function ProfessionalEffects() {
         { symbol: '{ }', x: 250, y: -190, delay: 1, size: 'text-sm' },
         { symbol: '[ ]', x: -250, y: 190, delay: 2, size: 'text-sm' },
         { symbol: '=>', x: 250, y: 190, delay: 3, size: 'text-base' },
-        { symbol: '( )', x: 0, y: -260, delay: 1.5, size: 'text-xs' },
-        { symbol: '//', x: 0, y: 260, delay: 2.5, size: 'text-xs' },
       ].map((item, i) => (
         <motion.div
           key={`symbol-${i}`}
@@ -449,12 +420,10 @@ export function ProfessionalEffects() {
             fontWeight: 800,
           }}
           animate={{
-            opacity: [0.4, 0.8, 0.4], 
-            y: [item.y - 8, item.y + 8, item.y - 8],
-            scale: [0.95, 1.05, 0.95],
+            opacity: [0.5, 0.8, 0.5],
           }}
           transition={{
-            duration: 4,
+            duration: 5,
             repeat: Infinity,
             ease: 'easeInOut',
             delay: item.delay,
