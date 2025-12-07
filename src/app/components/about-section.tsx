@@ -12,13 +12,11 @@ export function AboutSection() {
   return (
     <section id="about" className="py-24 px-6 relative overflow-hidden bg-white dark:bg-[#01161d]">
       
-      {/* --- BACKGROUND LIGHTING (Ito yung nagbibigay buhay) --- */}
+    
       
-      {/* 1. Base Dark Background */}
+ 
       <div className="absolute inset-0 bg-[#01161d] -z-50" />
 
-      {/* 2. THE SPOTLIGHT: Malaking light source sa gitna */}
-      {/* Ito ang magpapatanggal ng "boring" look. Nagbibigay ito ng depth. */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-500/20 via-[#01161d]/40 to-transparent -z-40 pointer-events-none" />
 
      
