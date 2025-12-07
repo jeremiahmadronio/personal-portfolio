@@ -236,3 +236,11 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Circular image styling for portrait photos */
+img[src*="/images/a.jpg"] {
+  border-radius: 50%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center top;
+}

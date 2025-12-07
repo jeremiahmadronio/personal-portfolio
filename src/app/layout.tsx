@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   
   description:
     "Explore the official portfolio of Jeremiah Madronio, a Backend Software Engineer specializing in Spring Boot, AI-Powered web applications, and modern API development.",
+  verification: {
+    google: "google85749893338e3316",
+  },
 
   
   keywords: [
@@ -84,8 +87,8 @@ export const metadata: Metadata = {
 
 
   icons: {
-    icon: [{ url: "/images/a.jpg", sizes: "600x800", type: "image/jpeg" }],
-    apple: [{ url: "/images/a.jpg", sizes: "600x800", type: "image/jpeg" }],
+    icon: [{ url: "/images/a.jpg", sizes: "any", type: "image/jpeg" }],
+    apple: [{ url: "/images/a.jpg", sizes: "any", type: "image/jpeg" }],
   },
 
  
@@ -99,7 +102,7 @@ export const metadata: Metadata = {
       {
         url: "/images/a.jpg",
         width: 600,
-        height: 800,
+        height: 600,
         alt: "Portrait of Jeremiah Jere Madronio",
       },
     ],
