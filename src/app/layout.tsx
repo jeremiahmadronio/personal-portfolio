@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description:
     "Explore the official portfolio of Jeremiah Madronio, a Backend Software Engineer specializing in Spring Boot, AI-Powered web applications, and modern API development.",
   verification: {
-    google: "google85749893338e3316",
+    google: "OdvSQHV0lfmsLv_mZki80UcPvk9wkBKERHndlIv1tws",
   },
 
   
