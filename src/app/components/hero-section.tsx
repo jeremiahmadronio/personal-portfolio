@@ -199,30 +199,22 @@ export function HeroSection() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="order-1 lg:order-2 relative flex justify-center"
           >
-            {/* Background shapes component */}
             <ProfessionalEffects />
 
-            {/* Photo container with enhanced frame effects */}
             <div className="relative z-10 w-64 h-80 sm:w-72 sm:h-96 lg:w-80 lg:h-[420px]">
               
-              {/* Main photo frame */}
               <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl shadow-primary/10">
                 
-                {/* TINANGGAL KO NA YUNG GRADIENT OVERLAY DITO.
-                   Dati may overlay dito na nagfe-fade to "background" color.
-                   Yun ang nagpupuputi sa picture mo. Ngayon, clean image na lang.
-                */}
-
-                {/* Animated border glow - Subtle blue border only */}
+               
                 <motion.div
                   className="absolute inset-0 rounded-2xl z-10 pointer-events-none"
                   style={{
-                    border: '2px solid rgba(6, 182, 212, 0.3)', // Solid Tech Blue Color
+                    border: '2px solid rgba(6, 182, 212, 0.3)', 
                   }}
                   animate={{
                     boxShadow: [
-                      '0 0 0px rgba(6, 182, 212, 0)', // No glow
-                      '0 0 10px rgba(6, 182, 212, 0.2)', // Very subtle glow
+                      '0 0 0px rgba(6, 182, 212, 0)', 
+                      '0 0 10px rgba(6, 182, 212, 0.2)', 
                       '0 0 0px rgba(6, 182, 212, 0)',
                     ],
                   }}
