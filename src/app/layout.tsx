@@ -110,3 +110,24 @@ export const metadata: Metadata = {
     type: "website",
   },
 }
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={_inter.className}>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+          {children}
+          <Analytics />
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
