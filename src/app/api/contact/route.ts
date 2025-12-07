@@ -9,7 +9,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
     }
 
-    // Initialize Resend with API key at runtime (not at module level)
+    
     const resend = new Resend(process.env.RESEND_API_KEY)
 
     await resend.emails.send({

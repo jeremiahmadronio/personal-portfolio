@@ -1,7 +1,20 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 export function ProfessionalEffects() {
+  const [isMobile, setIsMobile] = useState(false)
+  
+  useEffect(() => {
+    // Check if mobile on mount
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
   // Gamit tayo ng mas DARK na Cyan/Teal values (RGB: 8, 145, 178 -> Cyan-600) 
   // para visible siya sa White Background.
   const darkCyan = '8, 145, 178' 
@@ -10,7 +23,7 @@ export function ProfessionalEffects() {
   return (
     <>
       {/* Multi-layered Rotating Rings - SHARPER & DARKER FOR VISIBILITY */}
-      {[0, 1, 2].map((i) => (
+      {[0, 1, 2, 3, 4].map((i) => (
         <motion.div
           key={`ring-${i}`}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
@@ -20,14 +33,20 @@ export function ProfessionalEffects() {
             // Increased opacity and used Darker Cyan for clear lines on white
             border: `1px ${i % 2 === 0 ? 'solid' : 'dashed'} rgba(${darkCyan}, ${0.5 - i * 0.05})`, 
           }}
-          animate={{
+          animate={isMobile ? {} : {
             rotate: i % 2 === 0 ? 360 : -360,
+            scale: [1, 1.01, 1],
           }}
-          transition={{
+          transition={isMobile ? {} : {
             rotate: {
-              duration: 25 + i * 5,
+              duration: 20 + i * 4,
               repeat: Infinity,
               ease: 'linear',
+            },
+            scale: {
+              duration: 5,
+              repeat: Infinity,
+              ease: 'easeInOut',
             },
           }}
         >
@@ -112,8 +131,8 @@ export function ProfessionalEffects() {
       {/* Pulsing Frames - DARKER BORDERS */}
 
       {/* Particles - SOLID DARK DOTS */}
-      {[...Array(5)].map((_, i) => {
-        const angle = (i * 360) / 5
+      {[...Array(isMobile ? 5 : 12)].map((_, i) => {
+        const angle = (i * 360) / (isMobile ? 5 : 12)
         const radius = 160
         const x = Math.cos((angle * Math.PI) / 180) * radius
         const y = Math.sin((angle * Math.PI) / 180) * radius
@@ -128,17 +147,19 @@ export function ProfessionalEffects() {
               borderRadius: '50%',
               background: i % 2 === 0 ? `rgb(${darkCyan})` : `rgb(${darkTeal})`, 
               boxShadow: 'none',
+              ...(isMobile ? { transform: `translate(${x * 0.6}px, ${y * 0.6}px)` } : {}),
             }}
-            animate={{
-              x: [0, x * 0.6],
-              y: [0, y * 0.6],
-              opacity: [0, 1, 0.5],
+            animate={isMobile ? {} : {
+              x: [0, x * 0.8],
+              y: [0, y * 0.8],
+              opacity: [0, 1, 0.7],
+              scale: [0.8, 1.2, 1],
             }}
-            transition={{
-              duration: 8,
+            transition={isMobile ? {} : {
+              duration: 10,
               repeat: Infinity,
-              delay: i * 0.4,
-              ease: 'easeOut',
+              delay: i * 0.3,
+              ease: 'easeInOut',
             }}
           />
         )
@@ -156,9 +177,10 @@ export function ProfessionalEffects() {
             height: '10px',
             borderRadius: '50%',
             border: `2px solid rgba(${darkCyan}, 0.8)`,
-            background: 'transparent', 
+            background: 'transparent',
+            ...(isMobile ? { transform: `translate(${Math.cos((i * 180 * Math.PI) / 180) * 200}px, ${Math.sin((i * 180 * Math.PI) / 180) * 200}px)` } : {}),
           }}
-          animate={{
+          animate={isMobile ? {} : {
             x: [
               Math.cos((i * 180 * Math.PI) / 180) * 200,
               Math.cos(((i * 180 + 360) * Math.PI) / 180) * 200,
@@ -169,13 +191,55 @@ export function ProfessionalEffects() {
             ],
             opacity: [0.6, 0.9, 0.6],
           }}
-          transition={{
+          transition={isMobile ? {} : {
             duration: 20,
             repeat: Infinity,
             ease: 'linear',
           }}
         />
       ))}
+
+      {/* Orbiting Planets on Each Ring - Rotating WITH the rings */}
+      {!isMobile && [0, 1, 2, 3, 4].map((ringIdx) => {
+        const ringRadius = 150 + ringIdx * 70
+        const numPlanets = 2 + ringIdx
+        const ringDuration = 20 + ringIdx * 4
+        const startAngle = (planetIdx: number) => (planetIdx * 360 / numPlanets)
+        
+        return [...Array(numPlanets)].map((_, planetIdx) => (
+          <motion.div
+            key={`planet-ring${ringIdx}-${planetIdx}`}
+            className="absolute top-1/2 left-1/2"
+            style={{
+              transformOrigin: '0px 0px',
+            }}
+            animate={{
+              rotate: ringIdx % 2 === 0 ? 360 : -360,
+            }}
+            transition={{
+              duration: ringDuration,
+              repeat: Infinity,
+              ease: 'linear',
+            }}
+          >
+            <div
+              style={{
+                position: 'absolute',
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                background: ringIdx % 2 === 0 ? `rgba(${darkCyan}, 0.85)` : `rgba(${darkTeal}, 0.75)`,
+                boxShadow: ringIdx % 2 === 0 ? `0 0 10px rgba(${darkCyan}, 0.9)` : `0 0 10px rgba(${darkTeal}, 0.8)`,
+                opacity: 0.75,
+                left: Math.cos(((startAngle(planetIdx)) * Math.PI) / 180) * ringRadius,
+                top: Math.sin(((startAngle(planetIdx)) * Math.PI) / 180) * ringRadius,
+              }}
+            />
+          </motion.div>
+        ))
+      })}
+
+
 
       {/* Main Frame Glow - REDUCED BLUR, INCREASED OPACITY */}
       <motion.div
@@ -224,10 +288,10 @@ export function ProfessionalEffects() {
             y: item.y,
             fontWeight: 800,
           }}
-          animate={{
+          animate={isMobile ? {} : {
             opacity: [0.5, 0.8, 0.5],
           }}
-          transition={{
+          transition={isMobile ? {} : {
             duration: 5,
             repeat: Infinity,
             ease: 'easeInOut',

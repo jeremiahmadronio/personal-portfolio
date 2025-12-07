@@ -32,12 +32,12 @@ export function ChatWidget() {
     }
    
     return [
-      {
-        id: "1",
-        text: "Hi! 👋 How can I help you today?",
-        sender: "bot",
-        timestamp: new Date(),
-      },
+   {
+  id: "1",
+  text: "Hey there! 👋 I'm Jeremiah's AI assistant. Ask me anything about his skills, projects, or experience as a backend developer!",
+  sender: "bot",
+  timestamp: new Date(),
+}
     ]
   })
 
@@ -192,9 +192,11 @@ export function ChatWidget() {
             <div className="bg-gradient-to-r from-cyan-600 via-cyan-500 to-cyan-600 dark:from-cyan-600 dark:via-cyan-500 dark:to-teal-600 p-4 text-white shadow-lg flex-shrink-0">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1">
-                  <h3 className="font-bold text-lg">Let's Chat! 💬</h3>
-                  <p className="text-sm text-cyan-50 dark:text-cyan-100">I'm here to help and answer your questions about Jeremiah</p>
-                </div>
+  <h3 className="font-bold text-lg">Hi there! 👋</h3>
+  <p className="text-sm text-cyan-50 dark:text-cyan-100">
+    Want to know about Jeremiah's skills or projects? Just ask!
+  </p>
+</div>
                 <button
                   onClick={() => setIsOpen(false)}
                   className="p-1 hover:bg-white/20 dark:hover:bg-white/10 rounded-lg transition-all duration-200 flex-shrink-0 mt-1"
