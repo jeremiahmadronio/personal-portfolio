@@ -30,7 +30,6 @@ export function ProfessionalEffects() {
           style={{
             width: 300 + i * 70,
             height: 300 + i * 70,
-            // Increased opacity and used Darker Cyan for clear lines on white
             border: `1px ${i % 2 === 0 ? 'solid' : 'dashed'} rgba(${darkCyan}, ${0.5 - i * 0.05})`, 
           }}
           animate={isMobile ? {} : {
@@ -50,7 +49,6 @@ export function ProfessionalEffects() {
             },
           }}
         >
-           {/* Detailed Ticks - Solid Color */}
            {i % 2 !== 0 && (
              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-2 bg-cyan-600" />
            )}
@@ -61,34 +59,35 @@ export function ProfessionalEffects() {
       ))}
 
       {/* Enhanced Grid Background - VISIBLE LINES */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px]"
-        style={{ opacity: 0.3 }}
-      >
-        <svg className="w-full h-full" viewBox="0 0 600 600">
-          <defs>
-            <pattern
-              id="professionalGrid"
-              width="30"
-              height="30"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M 30 0 L 0 0 0 30"
-                fill="none"
-                // Darker stroke color
-                stroke={`rgba(${darkCyan}, 0.4)`}
-                strokeWidth="0.8" // Thicker line for detail
-              />
-              <circle cx="0" cy="0" r="1.5" fill={`rgba(${darkCyan}, 0.6)`} /> 
-            </pattern>
-          </defs>
-          <rect width="600" height="600" fill="url(#professionalGrid)" />
-        </svg>
-      </motion.div>
+      {!isMobile && (
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px]"
+          style={{ opacity: 0.3 }}
+        >
+          <svg className="w-full h-full" viewBox="0 0 600 600">
+            <defs>
+              <pattern
+                id="professionalGrid"
+                width="30"
+                height="30"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M 30 0 L 0 0 0 30"
+                  fill="none"
+                  stroke={`rgba(${darkCyan}, 0.4)`}
+                  strokeWidth="0.8"
+                />
+                <circle cx="0" cy="0" r="1.5" fill={`rgba(${darkCyan}, 0.6)`} /> 
+              </pattern>
+            </defs>
+            <rect width="600" height="600" fill="url(#professionalGrid)" />
+          </svg>
+        </motion.div>
+      )}
 
       {/* Advanced Corner Brackets - SOLID & SHARP */}
-      {[
+      {!isMobile && [
         { top: 'calc(50% - 220px)', left: 'calc(50% - 170px)', rotate: 0 },
         { top: 'calc(50% - 220px)', left: 'calc(50% + 145px)', rotate: 90 },
         { top: 'calc(50% + 195px)', left: 'calc(50% - 170px)', rotate: 270 },
@@ -108,8 +107,8 @@ export function ProfessionalEffects() {
               <path
                 d="M0 0 L40 0 M0 0 L0 40"
                 fill="none"
-                stroke={`rgba(${darkCyan}, 0.9)`} // Almost solid
-                strokeWidth="2.5" // Thicker
+                stroke={`rgba(${darkCyan}, 0.9)`}
+                strokeWidth="2.5"
                 strokeLinecap="square"
               />
               <path
@@ -168,7 +167,7 @@ export function ProfessionalEffects() {
       {/* Tech Indicator Lines - GRADIENT */}
 
       {/* Orbiting Tech Elements - Strong Outlines */}
-      {[0, 1].map((i) => (
+      {!isMobile && [0, 1].map((i) => (
         <motion.div
           key={`orbit-${i}`}
           className="absolute top-1/2 left-1/2"
@@ -178,9 +177,8 @@ export function ProfessionalEffects() {
             borderRadius: '50%',
             border: `2px solid rgba(${darkCyan}, 0.8)`,
             background: 'transparent',
-            ...(isMobile ? { transform: `translate(${Math.cos((i * 180 * Math.PI) / 180) * 200}px, ${Math.sin((i * 180 * Math.PI) / 180) * 200}px)` } : {}),
           }}
-          animate={isMobile ? {} : {
+          animate={{
             x: [
               Math.cos((i * 180 * Math.PI) / 180) * 200,
               Math.cos(((i * 180 + 360) * Math.PI) / 180) * 200,
@@ -191,7 +189,7 @@ export function ProfessionalEffects() {
             ],
             opacity: [0.6, 0.9, 0.6],
           }}
-          transition={isMobile ? {} : {
+          transition={{
             duration: 20,
             repeat: Infinity,
             ease: 'linear',
@@ -242,16 +240,18 @@ export function ProfessionalEffects() {
 
 
       {/* Main Frame Glow - REDUCED BLUR, INCREASED OPACITY */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl"
-        style={{
-          width: '295px',
-          height: '405px',
-          border: `1px solid rgba(${darkCyan}, 0.6)`, // Visible border
-          boxShadow: `0 0 10px rgba(${darkCyan}, 0.25)`, // Tight glow
-          opacity: 0.7,
-        }}
-      />
+      {!isMobile && (
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl"
+          style={{
+            width: '295px',
+            height: '405px',
+            border: `1px solid rgba(${darkCyan}, 0.6)`,
+            boxShadow: `0 0 10px rgba(${darkCyan}, 0.25)`,
+            opacity: 0.7,
+          }}
+        />
+      )}
 
       {/* Data Streams - Solid Colors */}
 
@@ -273,7 +273,7 @@ export function ProfessionalEffects() {
       </div>
 
       {/* Code Symbols - Darkest for visibility */}
-      {[
+      {!isMobile && [
         { symbol: '</>', x: -250, y: -190, delay: 0, size: 'text-base' },
         { symbol: '{ }', x: 250, y: -190, delay: 1, size: 'text-sm' },
         { symbol: '[ ]', x: -250, y: 190, delay: 2, size: 'text-sm' },
@@ -281,17 +281,16 @@ export function ProfessionalEffects() {
       ].map((item, i) => (
         <motion.div
           key={`symbol-${i}`}
-          // Changed to text-cyan-600/60 for readability against white
           className={`absolute top-1/2 left-1/2 text-cyan-600/60 ${item.size} font-mono`} 
           style={{
             x: item.x,
             y: item.y,
             fontWeight: 800,
           }}
-          animate={isMobile ? {} : {
+          animate={{
             opacity: [0.5, 0.8, 0.5],
           }}
-          transition={isMobile ? {} : {
+          transition={{
             duration: 5,
             repeat: Infinity,
             ease: 'easeInOut',

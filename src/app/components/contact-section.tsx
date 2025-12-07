@@ -46,7 +46,7 @@ export function ContactSection() {
     setErrorMessage("")
 
     try {
-      // First: Validate message with AI
+     
       const validateRes = await fetch("/api/validate-message", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -55,7 +55,11 @@ export function ContactSection() {
 
       const validateData = await validateRes.json()
 
-      if (!validateRes.ok || !validateData.isValid) {
+    
+      if (!validateRes.ok) {
+        console.warn("AI validation service error, proceeding anyway:", validateData)
+      
+      } else if (!validateData.isValid) {
         setStatus("error")
         setErrorMessage(validateData.reason || "Message contains inappropriate content.")
         const newTimeout = setTimeout(() => setStatus(null), 5000)
@@ -64,7 +68,7 @@ export function ContactSection() {
         return
       }
 
-      // Message is valid - proceed with sending
+      // Message is valid or validation skipped - proceed with sending
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
